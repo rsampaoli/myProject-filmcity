@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>creacion de peli</title>
+</head>
+
+<body>
+
+    <h1>CREAR PELICULA</h1>
+    <form action='/peliculas/crearPelicula' method="POST">
+        <div>
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" placeholder="nombre">
+        </div>
+        <label for="descripcion">Descripcion</label>
+
+        <div>
+            <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
+            <!--             <input type="text" name="descripcion" placeholder="descripcion">
+ -->
+        </div>
+        <div>
+            <label for="rating">Rating</label>
+            <input type="number" name="rating" placeholder="rating">
+        </div>
+        <button class="submit" type="submit">Crear</button>
+    </form>
+
+</body>
+
+</html>

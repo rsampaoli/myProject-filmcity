@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/', peliculaRouter);
+app.use('/peliculas', peliculaRouter);
 app.use('/', userRouter);
 
 

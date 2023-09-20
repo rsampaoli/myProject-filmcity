@@ -1,5 +1,12 @@
 const db = require('../database/models');
 const { Op } = require('sequelize');
+const { Peliculas } = db;
+
+let listaPelis = function () {
+    db.Peliculas.findAll()
+    return listaPelis;
+};
+
 
 let moviesController = {
     list: function (req, res) {
@@ -14,6 +21,18 @@ let moviesController = {
             .then((pelicula) => {
                 res.render("detalle_pelicula", { pelicula: pelicula });
             })
+    },
+
+    add: function (req, res) {
+        res.render('crearPelicula');
+    },
+
+    create: function (req, res) {
+        Peliculas.create({
+            nombre: req.body.nombre,
+        }).then(() => {
+            res.redirect("/peliculas/listado")
+        });
     }
 }
 

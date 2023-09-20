@@ -7,8 +7,8 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.INTEGER
         },
         nombre: {
-            allowNull: false,
             type: dataTypes.STRING,
+            allowNull: false,
         }
     };
     const config = {
