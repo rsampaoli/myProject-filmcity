@@ -8,6 +8,13 @@ let moviesController = {
                 res.render("listado", { peliculas: peliculas })
             })
     },
+
+    detail: function (req, res) {
+        db.Peliculas.findByPk(req.params.id)
+            .then((pelicula) => {
+                res.render("detalle_pelicula", { pelicula: pelicula });
+            })
+    }
 }
 
 module.exports = moviesController;  
