@@ -26,10 +26,12 @@ let moviesController = {
     },
 
     create: function (req, res) {
+        let genero_body = req.body.genero;
         Peliculas.create({
             nombre: req.body.nombre,
             description: req.body.description,
-            rating: Number(req.body.rating)
+            rating: Number(req.body.rating),
+            genero_id: req.body.genero
         }).then(() => {
             res.redirect("/peliculas/listado")
         });
