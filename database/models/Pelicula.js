@@ -9,7 +9,15 @@ module.exports = (sequelize, dataTypes) => {
         nombre: {
             type: dataTypes.STRING,
             allowNull: false,
-        }
+        },
+        rating: {
+            type: dataTypes.INTEGER,
+            allowNull: false,
+        },
+        description: {
+            type: dataTypes.STRING,
+            allowNull: false,
+        },
     };
     const config = {
         tableName: "pelicula", //nombre real de la tabla en la BD

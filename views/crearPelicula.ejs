@@ -8,7 +8,6 @@
 </head>
 
 <body>
-
     <h1>CREAR PELICULA</h1>
     <form action='/peliculas/crearPelicula' method="POST">
         <div>
@@ -16,19 +15,17 @@
             <input type="text" name="nombre" placeholder="nombre">
         </div>
         <label for="descripcion">Descripcion</label>
-
         <div>
-            <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
-            <!--             <input type="text" name="descripcion" placeholder="descripcion">
- -->
+            <textarea name="description" id="description" cols="30" rows="10"></textarea>
         </div>
         <div>
             <label for="rating">Rating</label>
             <input type="number" name="rating" placeholder="rating">
         </div>
+        <br>
         <button class="submit" type="submit">Crear</button>
+        <button> <a href="/peliculas/listado">VOLVER</a></button>
     </form>
-
 </body>
 
 </html>
