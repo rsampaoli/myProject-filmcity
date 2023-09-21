@@ -1,23 +1,21 @@
 const db = require('../database/models');
 const { Op } = require('sequelize');
-const { Peliculas } = db;
-
-let listaPelis = function () {
-    db.Peliculas.findAll()
-    return listaPelis;
-};
-
+const { Peliculas, Genero } = db;
 
 let moviesController = {
     list: function (req, res) {
-        db.Peliculas.findAll()
+        db.Peliculas.findAll({
+            include: [{ association: "genero" }]
+        })
             .then(function (peliculas) {
                 res.render("listado", { peliculas: peliculas })
             })
     },
 
     detail: function (req, res) {
-        db.Peliculas.findByPk(req.params.id)
+        db.Peliculas.findByPk(req.params.id, {
+            include: [{ association: "genero" }]
+        })
             .then((pelicula) => {
                 res.render("detalle_pelicula", { pelicula: pelicula });
             })

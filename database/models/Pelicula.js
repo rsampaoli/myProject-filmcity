@@ -18,6 +18,10 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING,
             allowNull: false,
         },
+        genero_id: {
+            type: dataTypes.INTEGER,
+            allowNull: false,
+        }
     };
     const config = {
         tableName: "pelicula", //nombre real de la tabla en la BD
@@ -25,5 +29,12 @@ module.exports = (sequelize, dataTypes) => {
     };
 
     const Pelicula = sequelize.define(alias, cols, config);
+
+    Pelicula.associate = (models) => {
+        Pelicula.belongsTo(models.Generos, {
+            foreignKey: 'genero_id',
+            as: 'genero'
+        });
+    }
     return Pelicula;
-}    
+}

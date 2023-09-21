@@ -13,15 +13,15 @@
         <% peliculas.forEach(peliculas=> { %>
             <li>
                 <a href="/peliculas/listado/id/<%= peliculas.id %>">
-                    <%= peliculas.nombre %>
+                    <%= peliculas.nombre %> - <%= peliculas.genero.tipo %>
                 </a>
             </li>
             <% }) %>
     </ul>
 
-        <a href="/peliculas/crearPelicula">
-            <button>Crear</button>
-        </a>
+    <a href="/peliculas/crearPelicula">
+        <button>Crear</button>
+    </a>
 </body>
 
 </html>
