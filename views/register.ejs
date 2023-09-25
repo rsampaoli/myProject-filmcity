@@ -9,9 +9,52 @@
 
 <body>
     <h1>ESTE ES EL REGISTRO</h1>
+    <form action='/usuario/registro' method="POST">
+        <div>
+            <label for="name">ingrese su nombre</label>
+            <input type="text" name="first_name">
+        </div>
+        <div>
+            <label for="last_name">ingrese su apellido</label>
+            <input type="text" name="last_name">
+        </div>
+        <div>
+            <label for="alias">ingrese su alias</label>
+            <input type="text" name="alias">
+        </div>
+        <div>
+            <label for="email">ingrese un email</label>
+            <input type="text" name="email">
+        </div>
+        <div>
+            <label for="password">ingrese una contraseña</label>
+            <input type="password" name="password" id="pass">
+            <br>
+            <label for="checkbox">mostrar contraseña</label>
+            <input type="checkbox" onclick="Show()">
+        </div>
+        <label for="genero">seleccion su sexo</label>
+        <select name="genero" id="">
+            <option value="0">hombre</option>
+            <option value="1">mujer</option>
+        </select>
+        <br>
+        <button class="submit" type="submit">Crear</button>
+    </form>
     <a href="/">
         <button>Home</button>
     </a>
 </body>
+
+<script>
+    function Show() {
+        let pass = document.getElementById("pass");
+        if (pass.type === "password") {
+            pass.type = "text";
+        } else {
+            pass.type = "password"
+        }
+    }
+</script>
 
 </html>
