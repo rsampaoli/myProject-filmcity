@@ -21,6 +21,10 @@ module.exports = (sequelize, dataTypes) => {
         genero_id: {
             type: dataTypes.INTEGER,
             allowNull: false,
+        },
+        image: {
+            type: dataTypes.STRING,
+            allowNull: false
         }
     };
     const config = {
