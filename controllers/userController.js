@@ -12,6 +12,22 @@ const userController = {
         res.render('login')
     },
 
+    loginProcess: async (req, res) => {
+        const userFound = await Users.findOne({ // buscar el email del usuario en la base de datos
+            where: {
+                email: req.body.email
+            }
+        });
+        if (!userFound) { // validar si el usuario no existe en la base de datos
+            return res.send('no se encuentra el usuario');
+        } else {
+            if (req.body.pass === userFound.password) {
+                res.send('inicio correcto')
+            };
+        }
+        res.send('inicio incorrecto')
+    },
+
     create: (req, res) => {
         Users.create({
             first_name: req.body.first_name,

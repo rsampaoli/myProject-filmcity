@@ -9,6 +9,17 @@
 
 <body>
     <h1>ESTE ES EL LOGIN</h1>
+    <form action='/usuario/login' method="POST">
+        <div>
+            <label for="email">ingresa tu email</label>
+            <input type="text" name="email">
+        </div>
+        <div>
+            <label for="pass">ingresa tu password</label>
+            <input type="password" name="pass">
+        </div>
+        <button class="submit" type="submit">Login</button>
+    </form>
     <a href="/">
         <button>Home</button>
     </a>
