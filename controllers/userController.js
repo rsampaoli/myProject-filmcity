@@ -12,8 +12,12 @@ const userController = {
         res.render('login')
     },
 
+    profile: function (req, res) {
+        res.render('profile', { user: req.session.userLogged });
+    },
+
     loginProcess: async (req, res) => {
-        const userFound = await Users.findOne({ // buscar el email del usuario en la base de datos
+        let userFound = await Users.findOne({ // buscar el email del usuario en la base de datos
             where: {
                 email: req.body.email
             }
@@ -22,8 +26,10 @@ const userController = {
         if (!userFound) { // validar si el usuario no existe en la base de datos
             return res.send('no se encuentra el usuario');
         } else {
-            if (userFound.password === req.body.pass) {
-                res.send('wp')
+            if (userFound.password === req.body.pass) {  //pregunto si la pass coincide, la que pone en la pag, con la BD
+                delete userFound.password;               //en caso de positivo, borro la pass para no enviarla con el req
+                req.session.userLogged = userFound;      //asigno a req.session el usuario encontrado   
+                res.redirect('/usuario/profile')
             } else {
                 res.send('esa no es la pass')
             }
