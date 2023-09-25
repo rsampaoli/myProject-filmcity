@@ -17,26 +17,19 @@ const userController = {
             where: {
                 email: req.body.email
             }
-
         });
         console.log(userFound)
         if (!userFound) { // validar si el usuario no existe en la base de datos
             return res.send('no se encuentra el usuario');
         } else {
-            if (req.body.pass === userFound.password) {
-                req.session.usuarioLogueado = {
-                    id: userFound.id,
-                    first_name: userFound.first_name,
-                    last_name: userFound.last_name,
-                    email: userFound.email,
-                    avatar_id: userFound.avatar_id,
-                    alias: userFound.alias
-                }
-                res.redirect('/')
-            };
-        }
-        res.send('inicio incorrecto')
+            if (userFound.password === req.body.pass) {
+                res.send('wp')
+            } else {
+                res.send('esa no es la pass')
+            }
+        };
     },
+
 
     create: (req, res) => {
         Users.create({
