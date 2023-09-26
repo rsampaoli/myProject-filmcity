@@ -4,7 +4,11 @@ let router = express.Router();
 
 router.get('/', function (req, res) {
     //res.send('pagina principal del sitio');
-    res.render('index')
+    if (req.session.userLogged) {
+        res.render('indexLogged')
+    } else {
+        res.render('index')
+    }
 })
 
 module.exports = router;
