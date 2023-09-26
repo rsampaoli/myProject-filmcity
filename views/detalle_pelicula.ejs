@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel='stylesheet' href='/css/detalle_pelicula.css' />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -20,9 +21,9 @@
     <p>
        genero: <%= pelicula.genero.tipo %>
     </p>
-    <img src=" <%= pelicula.image %>" alt="">
+    <img src=" <%= pelicula.image %>" class="imagen_pelicula" alt="">
 </body>
-
+<br>
 <button> <a href="/peliculas/listado">VOLVER</a></button>
 
 </html>
