@@ -4,7 +4,6 @@
 
 html {
     background-image: url(../images/background\ index\ image.jpg);
-    background-repeat: no-repeat;
     max-width: 100%;
 }
 
@@ -18,10 +17,25 @@ header {
     justify-content: center;
 }
 
-.boton_login {
+.boton_ref {
     margin-left: 80%;
     margin-top: 2%;
     max-width: 10%;
+}
+
+.boton_login {
+    cursor: pointer;
+    border: none;
+    background-color: #ea5455;
+    padding: 8px 27px;
+    font-size: 16px;
+    transition: all 100ms;
+    position: absolute;
+}
+
+.boton_login:hover {
+    box-shadow: 0 2px 3px 0 rgb(0 0 0 / 80%);
+    background-color: #b64343;
 }
 
 .logo_marca {
@@ -45,6 +59,12 @@ header {
     background-color: #ea5455;
     max-width: 40%;
     border-radius: 4px;
+    transition: all 100ms;
+}
+
+.resto_cuerpo:hover {
+    background-color: #b64343;
+    opacity: 80%;
 }
 
 h1 {
