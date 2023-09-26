@@ -37,12 +37,5 @@ module.exports = (sequelize, dataTypes) => {
     };
 
     const User = sequelize.define(alias, cols, config);
-
-   /*  User.associate = (models) => {
-        User.belongsTo(models.Sexos, {
-            foreignKey: 'avatar_id',
-            as: 'sexo'
-        });
-    } */
     return User;
 }
