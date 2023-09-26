@@ -8,6 +8,7 @@ const userController = {
     register: function (req, res) {
         res.render('register')
     },
+    
     login: function (req, res) {
         res.render('login')
     },
@@ -22,7 +23,6 @@ const userController = {
                 email: req.body.email
             }
         });
-        console.log(userFound)
         if (!userFound) { // validar si el usuario no existe en la base de datos
             return res.send('no se encuentra el usuario');
         } else {
@@ -35,7 +35,6 @@ const userController = {
             }
         };
     },
-
 
     create: (req, res) => {
         Users.create({
@@ -50,6 +49,4 @@ const userController = {
         })
     }
 }
-
-
 module.exports = userController;

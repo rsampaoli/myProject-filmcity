@@ -1,0 +1,71 @@
+* {
+    font-family: "Roboto";
+}
+
+html {
+    background-image: url(../images/background\ index\ image.jpg);
+    background-repeat: no-repeat;
+    max-width: 100%;
+}
+
+body {
+
+    max-width: 100%;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+.boton_login {
+    margin-left: 80%;
+    margin-top: 2%;
+    max-width: 10%;
+}
+
+.logo_marca {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    margin-top: 1%;
+    max-width: 15%;
+}
+
+.resto_cuerpo {
+    box-shadow: 0 0 7px 0 rgb(0 0 0 / 100%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20em;
+    margin-left: 30%;
+    padding-left: 1em;
+    padding-right: 1em;
+    background-color: #ea5455;
+    max-width: 40%;
+    border-radius: 4px;
+}
+
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-top: 5em;
+    margin-bottom: -6em;
+    font-size: 40px;
+    opacity: 70%;
+}
+
+.resto_cuerpo h2 {
+    color: white;
+}
+
+.resto_cuerpo boton_registro {
+    margin-left: 10em;
+}
+
+.registro_boton {
+    text-decoration: none;
+}
