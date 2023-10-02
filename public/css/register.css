@@ -1,0 +1,99 @@
+* {
+    font-family: "Roboto";
+}
+
+html {
+    background-image: url(../images/background\ index\ image.jpg);
+    max-width: 100%;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+.link_logo {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    margin-top: 1%;
+    max-width: 15%;
+}
+
+.link_logo img {
+    max-width: 120%;
+}
+
+.boton_login {
+    display: none;
+}
+
+/* .logo_marca {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    margin-top: 1%;
+    max-width: 15%;
+} */
+
+h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+
+.cajon_formulario {
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.753);
+    justify-content: center;
+    display: flex;
+    margin: auto;
+    margin-top: 15%;
+    max-width: 20%;
+    padding: 2%;
+}
+
+.cajon_formulario div {
+    margin-top: 4%;
+}
+
+::placeholder {
+    margin-bottom: 10px;
+}
+
+.cajon_formulario input {
+    background-color: #333;
+    border: 0;
+    border-radius: 4px;
+    color: #fff;
+    height: 20px;
+    padding: 5%;
+}
+
+.select_sexo {
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+.mostrar_texto {
+    color: white;
+    font-size: 12px;
+}
+
+.submit {
+    background: #e50914;
+    font-weight: 500;
+    border-radius: 4px;
+    border: 0;
+    border-radius: 4px;
+    color: #fff;
+    padding: 5%;
+    width: 95%;
+    margin-top: 20px;
+}
+
+::-webkit-input-placeholder {
+    top: 50%;
+    margin-left: 25%;
+}

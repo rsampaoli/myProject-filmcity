@@ -8,7 +8,6 @@ html {
 }
 
 body {
-
     max-width: 100%;
 }
 
@@ -21,6 +20,10 @@ header {
     margin-left: 80%;
     margin-top: 2%;
     max-width: 10%;
+}
+
+.link_logo img {
+    max-width: 120%;
 }
 
 .boton_login {
@@ -38,13 +41,26 @@ header {
     background-color: #b64343;
 }
 
-.logo_marca {
+.link_logo {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+    max-width: 15%;
+    font-size: 16px;
+}
+
+.cajon_principal {
+    justify-content: center;
+}
+
+/* .logo_marca {
     display: flex;
     position: absolute;
     justify-content: center;
     margin-top: 1%;
     max-width: 15%;
-}
+} */
 
 .resto_cuerpo {
     box-shadow: 0 0 7px 0 rgb(0 0 0 / 100%);
