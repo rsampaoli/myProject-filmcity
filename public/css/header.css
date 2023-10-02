@@ -1,0 +1,32 @@
+header {
+    display: flex;
+    justify-content: center;
+}
+
+.link_logo {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    margin-top: 1%;
+    max-width: 15%;
+}
+
+.link_logo img {
+    max-width: 120%;
+}
+
+
+.boton_login {
+    cursor: pointer;
+    border: none;
+    background-color: #ea5455;
+    padding: 8px 27px;
+    font-size: 16px;
+    transition: all 100ms;
+    position: absolute;
+}
+
+.boton_login:hover {
+    box-shadow: 0 2px 3px 0 rgb(0 0 0 / 80%);
+    background-color: #b64343;
+}

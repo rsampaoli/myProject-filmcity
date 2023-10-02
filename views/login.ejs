@@ -2,27 +2,28 @@
 <html lang="en">
 
 <head>
+    <link rel='stylesheet' href='/css/login.css' />
+    <link rel='stylesheet' href='/css/header.css' />
     <meta charset="UTF-8">
     <meta name="viewport"="width=device-width, initial-scale=1.0">
     <title>LOGIN</title>
 </head>
 
 <body>
-    <h1>ESTE ES EL LOGIN</h1>
-    <form action='/usuario/login' method="POST">
-        <div>
-            <label for="email">ingresa tu email</label>
-            <input type="text" name="email">
+    <%- include("./partials/header.ejs") %>
+        <div class="cajon_formulario">
+
+            <form action='/usuario/login' method="POST">
+                <h1>Inicia Sesión</h1>
+                <div>
+                    <input type="text" name="email" placeholder="Ingresa tu email">
+                </div>
+                <div>
+                    <input type="password" name="pass" placeholder="Ingresa tu contraseña">
+                </div>
+                <button class="submit" type="submit">Iniciar Sesión</button>
+            </form>
         </div>
-        <div>
-            <label for="pass">ingresa tu password</label>
-            <input type="password" name="pass">
-        </div>
-        <button class="submit" type="submit">Login</button>
-    </form>
-    <a href="/">
-        <button>Home</button>
-    </a>
 </body>
 
 </html>

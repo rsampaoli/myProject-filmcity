@@ -3,6 +3,8 @@
 
 <head>
     <link rel='stylesheet' href='/css/register.css' />
+    <link rel='stylesheet' href='/css/header.css' />
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
@@ -10,47 +12,40 @@
 
 
 <body>
-    <header>
-        <a href="/" class="link_logo">
-            <img src="/images/logo.png" class="logo_marca">
-        </a>
-        <a href="/usuario/login" class="boton_ref">
-            <button class="boton_login">Login</button>
-        </a>
-    </header>
-    <div class="cajon_formulario">
+    <%- include("./partials/header.ejs") %>
 
-        <form action='/usuario/registro' method="POST">
-            <div>
-                <h1>Registrate</h1>
-            </div>
-            <div>
-                <input type="text" name="first_name" placeholder="  Ingresa tu nombre">
-            </div>
-            <div>
-                <input type="text" name="last_name" placeholder="  Ingresa tu apellido">
-            </div>
-            <div>
-                <input type="text" name="alias" placeholder="  Ingresa tu nick">
-            </div>
-            <div>
-                <input type="text" name="email" placeholder="  Ingresa tu email">
-            </div>
-            <div>
-                <input type="password" name="password" id="pass" placeholder="  Ingresa tu contraseña">
-            </div>
-            <div>
-                <input type="checkbox" onclick="Show()" class="boton_mostrar">
-                <label class="mostrar_texto" for="checkbox">Mostrar contraseña</label>
-            </div>
-            <select name="genero" id="" class="select_sexo">
-                <option value="" disabled selected hidden>Selecciona tu sexo</option>
-                <option value="/images/users/male.jpg">hombre</option>
-                <option value="/images/users/female.jpg">mujer</option>
-            </select>
-            <button class="submit" type="submit">Registrarse</button>
-        </form>
-    </div>
+        <div class="cajon_formulario">
+            <form action='/usuario/registro' method="POST">
+                <div>
+                    <h1>Registrate</h1>
+                </div>
+                <div>
+                    <input type="text" name="first_name" placeholder="  Ingresa tu nombre">
+                </div>
+                <div>
+                    <input type="text" name="last_name" placeholder="  Ingresa tu apellido">
+                </div>
+                <div>
+                    <input type="text" name="alias" placeholder="  Ingresa tu nick">
+                </div>
+                <div>
+                    <input type="text" name="email" placeholder="  Ingresa tu email">
+                </div>
+                <div>
+                    <input type="password" name="password" id="pass" placeholder="  Ingresa tu contraseña">
+                </div>
+                <div>
+                    <input type="checkbox" onclick="Show()" class="boton_mostrar">
+                    <label class="mostrar_texto" for="checkbox">Mostrar contraseña</label>
+                </div>
+                <select name="genero" id="" class="select_sexo">
+                    <option value="" disabled selected hidden>Selecciona tu sexo</option>
+                    <option value="/images/users/male.jpg">hombre</option>
+                    <option value="/images/users/female.jpg">mujer</option>
+                </select>
+                <button class="submit" type="submit">Registrarse</button>
+            </form>
+        </div>
 
 </body>
 

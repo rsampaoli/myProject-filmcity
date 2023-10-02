@@ -3,6 +3,7 @@
 
 <head>
   <link rel='stylesheet' href='/css/index.css' />
+  <link rel='stylesheet' href='/css/header.css' />
   <meta name="viewport" ,
     content="width=device-width, user-scalable=0, maximum-scale=1.0,initial-scale=1.0, user-scalable=0">
   <title>MAIN</title>
@@ -11,23 +12,16 @@
 
 
 <body>
-  <!-- header -->
-  <header>
-    <a href="/" class="link_logo">
-      <img src="/images/logo.png" class="logo_marca">
-    </a>
-    <a href="/usuario/login" class="boton_ref">
-      <button class="boton_login">Login</button>
-    </a>
-  </header>
-  <div class="cajon_principal">
-    <h1>Del cine a tu casa!</h1>
-    <a href="/usuario/registro" class="registro_boton">
-      <div class="resto_cuerpo">
-        <h2>Aun no tenes cuenta? Registrate, es gratis!</h2>
-      </div>
-    </a>
-  </div>
+  <%- include("./partials/header.ejs") %>
+
+    <div class="cajon_principal">
+      <h1>Del cine a tu casa!</h1>
+      <a href="/usuario/registro" class="registro_boton">
+        <div class="resto_cuerpo">
+          <h2>Aun no tenes cuenta? Registrate, es gratis!</h2>
+        </div>
+      </a>
+    </div>
 </body>
 
 </html>
