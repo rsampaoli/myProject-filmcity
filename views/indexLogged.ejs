@@ -10,31 +10,36 @@
 </head>
 
 <body>
-    <%- include("./partials/header.ejs") %>
-        <main>
-            <nav class="navbar">
-                <ul>
-                    <li>INICIO</li>
-                    <li>PELICULAS</li>
-                    <li>HOLA</li>
-                </ul>
-            </nav>
-            <video class="video_home" playsinline autoplay muted loop>
-                <source src="video/video2.mp4" type="video/mp4">
-            </video>
-            <div class="cajon_peliculas">
-                <% peliculas.forEach(peliculas=> { %>
-                    <div class="pelicula">
-                        <a href="/peliculas/listado/id/<%= peliculas.id %>">
-                            <img class="imagen_pelicula" src="<%= peliculas.image %>" alt="">
-                        </a>
-                        <p class="nombre_pelicula">
-                            <%= peliculas.nombre %>
-                        </p>
-                    </div>
-                    <% }) %>
-            </div>
-        </main>
+    <main>
+        <nav class="main_navbar">
+            <ul class="left_navbar">
+                <li><a href="/">
+                        <img src="/images/logo.png" class="logo_marca">
+                    </a></li>
+                <li>INICIO</li>
+                <li>PELICULAS</li>
+                <li>HOLA</li>
+
+            </ul>
+
+        </nav>
+        <video class="video_home" playsinline autoplay muted loop>
+            <source src="video/video2.mp4" type="video/mp4">
+        </video>
+
+        <div class="cajon_peliculas">
+            <% peliculas.forEach(peliculas=> { %>
+                <div class="pelicula">
+                    <a href="/peliculas/listado/id/<%= peliculas.id %>">
+                        <img class="imagen_pelicula" src="<%= peliculas.image %>" alt="">
+                    </a>
+                    <p class="nombre_pelicula">
+                        <%= peliculas.nombre %>
+                    </p>
+                </div>
+                <% }) %>
+        </div>
+    </main>
 </body>
 
 </html>

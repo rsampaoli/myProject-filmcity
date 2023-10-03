@@ -5,36 +5,53 @@
 
 header {
     z-index: 1;
-    background-color: #111;
 }
 
 .link_logo {
     z-index: 1;
 }
 
-.navbar {
-
-
-    width: 100%;
+.main_navbar {
     position: absolute;
-    z-index: 1;
+    width: 100%;
+    z-index: 5;
+    left: 0em;
     top: 0em;
+}
+
+.main_navbar ul {
+    padding: 1em;
+    list-style-type: none;
+    display: flex;
     color: white;
     background-color: #11111144;
 }
 
+.main_navbar li {
+    text-align: center;
+    margin-left: 5em;
+    text-decoration: none;
+
+}
+
+img.logo_marca {
+    max-width: 60px;
+    margin-left: -5em;
+}
+
 html {
-    /* background-image: url(../images/background\ index\ image.jpg); */
-    background-color: #111;
+    left: 0em;
+    max-width: 1920px;
+    background-color: #0f0f0f;
     background-size: fill;
     background-repeat: repeat-y;
-    max-width: 1920px;
 }
 
 main {
+    max-width: 1920px;
     margin-top: 20em;
     display: block;
-    max-width: 1920px;
+    max-width: 100%;
     padding: 0;
     margin: 0;
 }
@@ -43,25 +60,21 @@ h1 {
     color: white;
 }
 
-.boton_login {
-    display: none;
-}
-
 .cajon_peliculas {
-    position: relative;
+    max-width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     backdrop-filter: blur(5px);
     padding-top: 1em;
-    margin-top: 32em;
+    margin-top: 45em;
     border-radius: 10px;
 }
 
 .pelicula {
-    margin: 5px;
+    margin: 8px;
     max-height: 300px;
-    margin-bottom: 5em;
+    margin-bottom: 6em;
     border-radius: 1%;
     cursor: pointer;
 }
@@ -69,31 +82,34 @@ h1 {
 .pelicula img {
     box-shadow: 10px 10px 30px rgb(0, 0, 0);
     cursor: pointer;
-    width: 242.8px;
-    height: 362px;
+    width: 212px;
+    height: 332px;
     object-fit: fill;
     transition: all 300ms;
 }
 
 .pelicula img:hover {
-    webkit-filter: blur(3px);
-    filter: blur(3px);
-
+    transform: scale(1.1);
+    /* filter: blur(3px); */
 }
 
 .nombre_pelicula {
-    margin-top: -1%;
+    margin-top: 1%;
     color: white;
     cursor: auto;
     text-align: center;
 }
 
 .video_home {
+    width: 1920px;
+    height: 1080px;
     position: absolute;
-    margin: auto;
-    margin-top: -33em;
+    top: 0em;
+    left: 0em;
+    margin-top: -8em;
+    /*     margin-top: -42em;
+ */
     display: block;
-    width: 100%;
     z-index: 0;
 
 }
