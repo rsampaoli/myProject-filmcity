@@ -3,8 +3,24 @@
     box-sizing: border-box;
 }
 
+header {
+    z-index: 1;
+    background-color: #111;
+}
+
 .link_logo {
     z-index: 1;
+}
+
+.navbar {
+
+
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0em;
+    color: white;
+    background-color: #11111144;
 }
 
 html {
@@ -19,6 +35,8 @@ main {
     margin-top: 20em;
     display: block;
     max-width: 1920px;
+    padding: 0;
+    margin: 0;
 }
 
 h1 {
@@ -35,8 +53,8 @@ h1 {
     justify-content: center;
     flex-wrap: wrap;
     backdrop-filter: blur(5px);
-    padding-top: 2em;
-    margin-top: 29em;
+    padding-top: 1em;
+    margin-top: 32em;
     border-radius: 10px;
 }
 
@@ -73,9 +91,9 @@ h1 {
 .video_home {
     position: absolute;
     margin: auto;
-    margin-top: -30em;
+    margin-top: -33em;
     display: block;
-    max-width: 100%;
-    width: 1920px;
-    z-index: auto;
+    width: 100%;
+    z-index: 0;
+
 }
