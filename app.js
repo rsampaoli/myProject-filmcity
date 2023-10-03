@@ -10,12 +10,15 @@ var peliculaRouter = require('./routes/movies.js');
 var userRouter = require('./routes/user.js');
 
 const { serialize } = require('v8');
+const mainController = require('./controllers/mainController.js');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(express.static('public'))
 
 app.use(logger('dev'));
 app.use(express.json());

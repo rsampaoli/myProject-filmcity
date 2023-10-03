@@ -1,0 +1,68 @@
+* {
+    font-family: "Roboto";
+    box-sizing: border-box;
+}
+
+html {
+    background-image: url(../images/background\ index\ image.jpg);
+    background-size: fill;
+    background-repeat: repeat-y;
+    max-width: 1920px;
+}
+
+main {
+    margin-top: 10%;
+    display: block;
+    max-width: 1920px;
+}
+
+h1 {
+    color: white;
+}
+
+.boton_login {
+    display: none;
+}
+
+.cajon_peliculas {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.pelicula {
+    margin: 5px;
+    max-height: 300px;
+    margin-bottom: 5em;
+    border-radius: 1%;
+    cursor: pointer;
+}
+
+.pelicula img {
+    box-shadow: 10px 10px 30px rgb(0, 0, 0);
+    cursor: pointer;
+    width: 242.8px;
+    height: 362px;
+    object-fit: fill;
+    transition: all 300ms;
+}
+
+.pelicula img:hover {
+    webkit-filter: blur(3px);
+    filter: blur(3px);
+
+}
+
+.nombre_pelicula {
+    margin-top: -1%;
+    color: white;
+    cursor: auto;
+    text-align: center;
+}
+
+.video_home {
+    margin: auto;
+    display: block;
+    max-width: 100%;
+    width: 1920px;
+}

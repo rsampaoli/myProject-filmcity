@@ -1,6 +1,6 @@
 const db = require('../database/models');
 const { Op } = require('sequelize');
-const { Users } = db;
+const { Users, Peliculas } = db;
 
 
 const userController = {
@@ -8,7 +8,7 @@ const userController = {
     register: function (req, res) {
         res.render('register')
     },
-    
+
     login: function (req, res) {
         res.render('login')
     },

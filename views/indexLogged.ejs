@@ -1,22 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <link rel='stylesheet' href='/css/header.css' />
+    <link rel='stylesheet' href='/css/indexLogged.css' />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <h3>estas logueado!, por ende te estoy redirigiendo</h3>
-    <h3>a la pagina principal que van a ver los usuarios logueados :) </h3>
-    <h3>por ahora esta vacia, vuelvas prontos por favors</h3>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h5>te dejo el link al listado de pelis para que chusmees :) </h5>
-    <a href="/peliculas/listado">vamo noma</a>
 
-    <h6>si queres desloguear, frena el proyecto y volvelo a iniciar (debo el boton de logout) </h6>
+<body>
+    <%- include("./partials/header.ejs") %>
+        <main>
+
+            <video class="video_home" playsinline autoplay muted loop>
+                <source src="video/video2.mp4" type="video/mp4">
+            </video>
+
+
+            <h1>listado peliculas</h1>
+            <div class="cajon_peliculas">
+                <% peliculas.forEach(peliculas=> { %>
+                    <div class="pelicula">
+
+                        <a href="/peliculas/listado/id/<%= peliculas.id %>">
+                            <img class="imagen_pelicula" src="<%= peliculas.image %>" alt="">
+                        </a>
+                        <p class="nombre_pelicula">
+                            <%= peliculas.nombre %>
+                        </p>
+                    </div>
+                    <% }) %>
+            </div>
+        </main>
 </body>
+
 </html>
