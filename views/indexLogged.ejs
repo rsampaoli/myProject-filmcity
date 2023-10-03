@@ -12,17 +12,12 @@
 <body>
     <%- include("./partials/header.ejs") %>
         <main>
-
             <video class="video_home" playsinline autoplay muted loop>
                 <source src="video/video2.mp4" type="video/mp4">
             </video>
-
-
-            <h1>listado peliculas</h1>
             <div class="cajon_peliculas">
                 <% peliculas.forEach(peliculas=> { %>
                     <div class="pelicula">
-
                         <a href="/peliculas/listado/id/<%= peliculas.id %>">
                             <img class="imagen_pelicula" src="<%= peliculas.image %>" alt="">
                         </a>

@@ -3,15 +3,20 @@
     box-sizing: border-box;
 }
 
+.link_logo {
+    z-index: 1;
+}
+
 html {
-    background-image: url(../images/background\ index\ image.jpg);
+    /* background-image: url(../images/background\ index\ image.jpg); */
+    background-color: #111;
     background-size: fill;
     background-repeat: repeat-y;
     max-width: 1920px;
 }
 
 main {
-    margin-top: 10%;
+    margin-top: 20em;
     display: block;
     max-width: 1920px;
 }
@@ -25,9 +30,14 @@ h1 {
 }
 
 .cajon_peliculas {
+    position: relative;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    backdrop-filter: blur(5px);
+    padding-top: 2em;
+    margin-top: 29em;
+    border-radius: 10px;
 }
 
 .pelicula {
@@ -61,8 +71,11 @@ h1 {
 }
 
 .video_home {
+    position: absolute;
     margin: auto;
+    margin-top: -30em;
     display: block;
     max-width: 100%;
     width: 1920px;
+    z-index: auto;
 }
