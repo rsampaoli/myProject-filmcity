@@ -17,6 +17,7 @@ header {
     z-index: 5;
     left: 0em;
     top: 0em;
+    margin-top: -1em;
 }
 
 .main_navbar ul {
@@ -101,15 +102,15 @@ h1 {
 }
 
 .video_home {
+    max-width: 100%;
     width: 1920px;
     height: 1080px;
     position: absolute;
-    top: 0em;
+    top: -3.5em;
     left: 0em;
     margin-top: -8em;
     /*     margin-top: -42em;
  */
-    display: block;
     z-index: 0;
 
 }
