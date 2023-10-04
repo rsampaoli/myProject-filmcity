@@ -3,43 +3,34 @@
 
 <head>
     <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/80b891709d.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="../public/images/logo.ico">
-    <link rel='stylesheet' href='/css/header.css' />
     <link rel='stylesheet' href='/css/indexLogged.css' />
+    <link rel='stylesheet' href='/css/partials/navbar.css' />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filmcity</title>
 </head>
 
 <body>
     <main>
-        <nav class="main_navbar">
-            <ul class="left_navbar">
-                <li><a href="/">
-                        <img src="/images/logo.png" class="logo_marca">
-                    </a></li>
-                <li>INICIO</li>
-                <li>PELICULAS</li>
-                <li>HOLA</li>
+        <%- include("./partials/navbar.ejs") %>
+            <video class="video_home" playsinline autoplay muted loop>
+                <source src="video/video2.mp4" type="video/mp4">
+            </video>
 
-            </ul>
-
-        </nav>
-        <video class="video_home" playsinline autoplay muted loop>
-            <source src="video/video2.mp4" type="video/mp4">
-        </video>
-
-        <div class="cajon_peliculas">
-            <% peliculas.forEach(peliculas=> { %>
-                <div class="pelicula">
-                    <a href="/peliculas/listado/id/<%= peliculas.id %>">
-                        <img class="imagen_pelicula" src="<%= peliculas.image %>" alt="">
-                    </a>
-                    <p class="nombre_pelicula">
-                        <%= peliculas.nombre %>
-                    </p>
-                </div>
-                <% }) %>
-        </div>
+            <div class="cajon_peliculas">
+                <% peliculas.forEach(peliculas=> { %>
+                    <div class="pelicula">
+                        <a href="/peliculas/listado/id/<%= peliculas.id %>">
+                            <img class="imagen_pelicula" src="<%= peliculas.image %>" alt="">
+                        </a>
+                        <p class="nombre_pelicula">
+                            <%= peliculas.nombre %>
+                        </p>
+                    </div>
+                    <% }) %>
+            </div>
     </main>
 </body>
 

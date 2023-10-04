@@ -29,7 +29,7 @@ const userController = {
             if (userFound.password === req.body.pass) {  //pregunto si la pass coincide, la que pone en la pag, con la BD
                 delete userFound.password;               //en caso de positivo, borro la pass para no enviarla con el req
                 req.session.userLogged = userFound;      //asigno a req.session el usuario encontrado   
-                res.redirect('/usuario/profile')
+                res.redirect('/')
             } else {
                 res.send('esa no es la pass')
             }

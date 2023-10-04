@@ -9,7 +9,7 @@ const mainController = {
             Peliculas.findAll({
                 include: [{ association: "genero" }]
             }).then(function (peliculas) {
-                res.render('indexLogged', { peliculas: peliculas })
+                res.render('indexLogged', { peliculas: peliculas, user: req.session.userLogged })
             })
         } else {
             res.render('index');

@@ -3,44 +3,8 @@
     box-sizing: border-box;
 }
 
-header {
-    z-index: 1;
-}
 
-.link_logo {
-    z-index: 1;
-}
-
-.main_navbar {
-    position: fixed;
-    width: 100%;
-    z-index: 5;
-    left: 0em;
-    top: 0em;
-    margin-top: -1em;
-    background-color: #11111144;
-}
-
-.main_navbar ul {
-    align-items: center;
-    padding: 0.5em;
-    list-style-type: none;
-    display: flex;
-    color: white;
-}
-
-.main_navbar li {
-    margin-top: 0.7em;
-    text-align: center;
-    margin-left: 5em;
-    text-decoration: none;
-
-}
-
-img.logo_marca {
-    max-width: 60px;
-    margin-left: -5em;
-}
+/* ESTILOS PAGINA PRINCIPAL */
 
 html {
     left: 0em;

@@ -1,0 +1,64 @@
+header {
+    z-index: 1;
+}
+
+#arrow_down {
+    margin-left: 0.1em;
+    margin-top: 0.1em;
+    transform: scale(0.8);
+}
+
+.link_logo {
+    z-index: 1;
+}
+
+.main_navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 5;
+    left: 0em;
+    top: 0em;
+    margin-top: -1em;
+    background-color: #11111144;
+}
+
+.main_navbar ul {
+    align-items: center;
+    padding: 0.5em;
+    list-style-type: none;
+    display: flex;
+    color: white;
+}
+
+.main_navbar li {
+    margin-top: 0.7em;
+    text-align: center;
+    margin-left: 5em;
+    text-decoration: none;
+}
+
+.main_navbar a {
+    text-decoration: none;
+    color: white;
+    transition: all 100ms;
+}
+
+.main_navbar a:hover {
+    text-decoration: underline;
+}
+
+img.logo_marca {
+    max-width: 90px;
+    margin-left: -4em;
+    margin-top: 0.2em;
+}
+
+.imagen_usuario {
+    position: absolute;
+    max-width: 70px;
+    border-radius: 50%;
+    margin-left: 50%;
+    align-items: center;
+    right: 1em;
+    top: 1.6em;
+}
