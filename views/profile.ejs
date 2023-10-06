@@ -2,20 +2,35 @@
 <html lang="en">
 
 <head>
+    <script src="https://kit.fontawesome.com/80b891709d.js" crossorigin="anonymous"></script>
+    <link rel='stylesheet' href='/css/profile.css' />
+    <link rel='stylesheet' href='/css/partials/navbar.css' />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 
 <body>
-    <h1>esta es la pagina de tu perfil</h1>
-    <h2> Hola <%= user.alias %>
-    </h2>
-    <h3>tu email es <%= user.email %></h3>
-    <h3>tu apellido es <%= user.last_name  %></h3>
-    <br>    
-    <h3>y esta es tu imagen de usuario</h3>
-    <img src="<%= user.avatar_id %>" alt="">
+    <main>
+        <%- include("./partials/navbar.ejs") %>
+
+            <div class="cajon_datos">
+                <img class="imagen_usuario_cajon" src="<%= user.avatar_id %>" alt="">
+                <h2> Hola <%= user.alias %> !
+                </h2>
+                <h4>
+                    Email: <%= user.email %>
+                </h4>
+                <h4>
+                    Nombre completo: <%= user.first_name %>
+                        <%= user.last_name %>
+                </h4>
+                <h4>
+                    Alias: <%= user.alias %>
+                </h4>
+                <a href=""> <i id="editar_boton" class="fa-regular fa-pen-to-square"></i></a>
+            </div>
+    </main>
 </body>
 
 </html>
