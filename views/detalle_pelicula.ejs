@@ -10,20 +10,22 @@
 
 <body>
     <h1>
-       titulo: <%= pelicula.nombre %>
+        titulo: <%= pelicula.nombre %>
     </h1>
     <h4>
         rating: <%= pelicula.rating %>
     </h4>
     <p>
-       descripcion: <%= pelicula.description %>
+        descripcion: <%= pelicula.description %>
     </p>
     <p>
-       genero: <%= pelicula.genero.tipo %>
+        genero: <%= pelicula.genero.tipo %>
     </p>
     <img src=" <%= pelicula.image %>" class="imagen_pelicula" alt="">
 </body>
 <br>
 <button> <a href="/peliculas/listado">VOLVER</a></button>
+<button> <a href="/peliculas/editar/id/<%=pelicula.id%>">EDITAR</a></button>
+<button> <a href="/peliculas/borrar/id/<%=pelicula.id%>">BORRAR</a></button>
 
 </html>

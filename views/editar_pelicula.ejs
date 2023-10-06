@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>edicion de peli</title>
+</head>
+
+<body>
+    <h1>EDITAR PELICULA</h1>
+    <form action='/peliculas/editar/id/<%= pelicula.id%>' enctype="multipart/form-data" method="POST">
+        <div>
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" placeholder="nombre" value="<%=pelicula.nombre%>">
+        </div>
+        <label for="descripcion">Descripcion</label>
+        <div>
+            <textarea name="description" id="description" cols="30" rows="10">
+                <%=pelicula.description%>
+            </textarea>
+        </div>
+        <div>
+            <label for="rating">Rating</label>
+            <input type="number" name="rating" placeholder="rating" value="<%=pelicula.rating%>">
+        </div>
+        <div>
+            <label for="image">Ingrese una portada para su pelicula</label>
+            <input type="file" name="image" value="<%=pelicula.image%>">
+        </div>
+        Genero
+        <select name="genero" id="">
+            <option value="" disabled selected hidden>
+                <%=pelicula.genero.tipo%>
+            </option>
+            <option value="1">terror</option>
+            <option value="2">accion</option>
+            <option value="3">fantasia</option>
+        </select>
+        <br>
+        <button class="submit" type="submit">EDITAR</button>
+        <button><a href="/peliculas/listado/id/<%= pelicula.id %>">VOLVER</a></button>
+    </form>
+</body>
+
+</html>

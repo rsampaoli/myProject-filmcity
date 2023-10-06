@@ -35,7 +35,49 @@ let moviesController = {
         }).then(() => {
             res.redirect("/peliculas/listado")
         }).catch(error => res.send(error))
-    }
+    },
+
+    edit: (req, res) => {
+        db.Peliculas.findByPk(req.params.id, {
+            include: [{ association: "genero" }]
+        })
+            .then((pelicula) => {
+                res.render("editar_pelicula", { pelicula: pelicula });
+            })
+    },
+
+    update: (req, res) => {
+        Peliculas.update({
+            nombre: req.body.nombre,
+            description: req.body.description,
+            rating: Number(req.body.rating),
+            genero_id: req.body.genero,
+            image: '/images/movies/' + req.file.filename,
+        }, {
+            where: {
+                id: req.params.id
+            }
+        });
+        res.redirect('/peliculas/listado/id/' + req.params.id)
+    },
+
+    delete: (req, res) => {
+        Peliculas.findByPk(req.params.id, {
+            include: [{ association: "genero" }]
+        })
+            .then((pelicula) => {
+                res.render("borrar_pelicula", { pelicula: pelicula });
+            })
+    },
+
+    destroy: (req, res) => {
+        Peliculas.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+        res.redirect('/peliculas/listado');
+    },
 }
 
 module.exports = moviesController;  
