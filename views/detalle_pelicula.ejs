@@ -3,29 +3,34 @@
 
 <head>
     <link rel='stylesheet' href='/css/detalle_pelicula.css' />
+    <link rel='stylesheet' href='/css/partials/navbar.css' />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 
 <body>
-    <h1>
-        titulo: <%= pelicula.nombre %>
-    </h1>
-    <h4>
-        rating: <%= pelicula.rating %>
-    </h4>
-    <p>
-        descripcion: <%= pelicula.description %>
-    </p>
-    <p>
-        genero: <%= pelicula.genero.tipo %>
-    </p>
-    <img src=" <%= pelicula.image %>" class="imagen_pelicula" alt="">
+    <main>
+        <%- include("./partials/navbar.ejs") %>
+
+            <h1>
+                titulo: <%= pelicula.nombre %>
+            </h1>
+            <h4>
+                rating: <%= pelicula.rating %>
+            </h4>
+            <p>
+                descripcion: <%= pelicula.description %>
+            </p>
+            <p>
+                genero: <%= pelicula.genero.tipo %>
+            </p>
+            <img src=" <%= pelicula.image %>" class="imagen_pelicula" alt="">
+            <br>
+            <button> <a href="/peliculas/listado">VOLVER</a></button>
+            <button> <a href="/peliculas/editar/id/<%=pelicula.id%>">EDITAR</a></button>
+            <button> <a href="/peliculas/borrar/id/<%=pelicula.id%>">BORRAR</a></button>
 </body>
-<br>
-<button> <a href="/peliculas/listado">VOLVER</a></button>
-<button> <a href="/peliculas/editar/id/<%=pelicula.id%>">EDITAR</a></button>
-<button> <a href="/peliculas/borrar/id/<%=pelicula.id%>">BORRAR</a></button>
+</main>
 
 </html>

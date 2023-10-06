@@ -13,12 +13,16 @@ let moviesController = {
     },
 
     detail: function (req, res) {
-        db.Peliculas.findByPk(req.params.id, {
-            include: [{ association: "genero" }]
-        })
-            .then((pelicula) => {
-                res.render("detalle_pelicula", { pelicula: pelicula });
+        if (req.session.userLogged) {
+            db.Peliculas.findByPk(req.params.id, {
+                include: [{ association: "genero" }]
             })
+                .then((pelicula) => {
+                    res.render("detalle_pelicula", { pelicula: pelicula, user: req.session.userLogged });
+                })
+        } else {
+            res.render('index');
+        }
     },
 
     add: function (req, res) {
@@ -35,6 +39,7 @@ let moviesController = {
         }).then(() => {
             res.redirect("/peliculas/listado")
         }).catch(error => res.send(error))
+
     },
 
     edit: (req, res) => {
