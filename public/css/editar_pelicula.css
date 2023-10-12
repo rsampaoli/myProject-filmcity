@@ -1,0 +1,136 @@
+* {
+    font-family: "Roboto";
+}
+
+html {
+    background-image: url(../images/background\ index\ image.jpg);
+    max-width: 100%;
+}
+
+.main_container {
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.753);
+    justify-content: center;
+    display: flex;
+    margin: auto;
+    margin-top: 8%;
+    max-width: 20%;
+    padding: 2%;
+
+}
+
+.editar_pelicula {
+    color: white;
+}
+
+div.formulario_editar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.formulario_editar form {
+    border: 0;
+    border-radius: 4px;
+    color: #fff;
+    padding: 5%;
+}
+
+
+.rating_genero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.seleccion_genero {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+}
+
+.seleccionar_genero {
+    max-width: 5em;
+}
+
+.ingresa_imagen {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+}
+
+.ingresa_imagen input {
+    margin-top: 5px;
+}
+
+.rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.rating input {
+    text-align: center;
+    margin-top: -10px;
+    max-width: 20%;
+}
+
+.div_descripcion {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+}
+
+textarea#description {
+    margin-top: 1em;
+}
+
+.div_nombre {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+}
+
+.div_nombre input {
+    max-width: 50%;
+    margin-left: 25%;
+    margin-top: -5px;
+    text-align: center;
+}
+
+.div_url {
+    margin-top: 1em;
+}
+
+.submit {
+    cursor: pointer;
+    border: none;
+    background-color: rgb(75, 153, 179);
+    transition: all 200ms;
+}
+
+.button_back {
+    cursor: pointer;
+    border: none;
+    background-color: rgb(175, 97, 66);
+    transition: all 200ms;
+}
+
+.button_back a {
+    text-decoration: none;
+    color: black;
+}
+
+.submit:hover {
+    box-shadow: 0 2px 3px 0 rgb(0 0 0 / 80%);
+    background-color: rgb(59, 121, 141);
+}
+
+.button_back:hover {
+    box-shadow: 0 2px 3px 0 rgb(0 0 0 / 80%);
+    background-color: rgb(121, 67, 45);
+}

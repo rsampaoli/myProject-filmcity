@@ -12,24 +12,40 @@
 <body>
     <main>
         <%- include("./partials/navbar.ejs") %>
-
-            <h1>
-                titulo: <%= pelicula.nombre %>
-            </h1>
-            <h4>
-                rating: <%= pelicula.rating %>
-            </h4>
-            <p>
-                descripcion: <%= pelicula.description %>
-            </p>
-            <p>
-                genero: <%= pelicula.genero.tipo %>
-            </p>
-            <img src=" <%= pelicula.image %>" class="imagen_pelicula" alt="">
-            <br>
-            <button> <a href="/peliculas/listado">VOLVER</a></button>
-            <button> <a href="/peliculas/editar/id/<%=pelicula.id%>">EDITAR</a></button>
-            <button> <a href="/peliculas/borrar/id/<%=pelicula.id%>">BORRAR</a></button>
+            <div class="container_pelicula">
+                <div class="imagen_detalle">
+                    <img src=" <%= pelicula.image %>" class="imagen_pelicula" alt="">
+                </div>
+                <div class="descripcion_detalle">
+                    <h1 class="titulo_pelicula">
+                        <%= pelicula.nombre %>
+                    </h1>
+                    <p class="rating_pelicula">
+                        rating: <%= pelicula.rating %>
+                    </p>
+                    <p class="genero_pelicula">
+                        genero: <%= pelicula.genero.tipo %>
+                    </p>
+                    <p class="descripcion_pelicula">
+                        Vista general:
+                    </p>
+                    <p class="descripcion">
+                        <%= pelicula.description %>
+                            <div class="buttons">
+                                <button> <a href="/peliculas/editar/id/<%=pelicula.id%>">EDITAR</a></button>
+                                <button> <a href="/peliculas/borrar/id/<%=pelicula.id%>">BORRAR</a></button>
+                            </div>
+                    </p>
+                </div>
+            </div>
+            <div class="main_video_container">
+                <div class="container_video">
+                    <div class="video_trailer">
+                        <iframe src="<%=pelicula.video_url%>" width="580" height="335" title="A YouTube video"
+                            frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
 </body>
 </main>
 

@@ -29,6 +29,10 @@ module.exports = (sequelize, dataTypes) => {
         avatar_id: {
             type: dataTypes.STRING,
             allowNull: false
+        },
+        admin: {
+            type: dataTypes.BOOLEAN,
+            allowNull: false
         }
     };
     const config = {

@@ -25,6 +25,10 @@ module.exports = (sequelize, dataTypes) => {
         image: {
             type: dataTypes.STRING,
             allowNull: false
+        },
+        video_url: {
+            type: dataTypes.STRING,
+            allowNull: false
         }
     };
     const config = {

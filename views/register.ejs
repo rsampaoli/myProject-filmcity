@@ -13,6 +13,9 @@
 
 <body>
     <%- include("./partials/header.ejs") %>
+        <div class="admin_user">
+            <p>sos admin ?</p>
+        </div>
         <div class="cajon_formulario">
             <form action='/usuario/registro' method="POST">
                 <div>
@@ -63,11 +66,11 @@
                         </p>
                         <% } %>
                 </div>
-                <div>
+                <div class="show_pass">
                     <input type="checkbox" onclick="Show()" class="boton_mostrar">
                     <label class="mostrar_texto" for="checkbox">Mostrar contraseña</label>
                 </div>
-                <select name="genero" id="" class="select_sexo">
+                <select name="genero" id="gender" class="select_sexo">
                     <option value="" disabled selected hidden>Selecciona tu sexo</option>
                     <option value="/images/users/male.jpg">hombre</option>
                     <option value="/images/users/female.jpg">mujer</option>
@@ -75,6 +78,7 @@
                 <button class="submit" type="submit">Registrarse</button>
             </form>
         </div>
+        
 
 </body>
 
