@@ -7,6 +7,11 @@ html {
     max-width: 100%;
 }
 
+.error {
+    position: absolute;
+    color: red;
+}
+
 .boton_login {
     display: none;
 }

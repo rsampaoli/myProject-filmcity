@@ -8,11 +8,13 @@ var logger = require('morgan');
 var indexRouter = require('./routes/main.js');
 var peliculaRouter = require('./routes/movies.js');
 var userRouter = require('./routes/user.js');
+var loggMiddleware = require('./middlewares/logMiddleware');
 
 const { serialize } = require('v8');
 const mainController = require('./controllers/mainController.js');
 
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,6 +32,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+
+app.use(loggMiddleware);
 
 app.use('/', indexRouter);
 app.use('/peliculas', peliculaRouter);

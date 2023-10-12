@@ -13,26 +13,55 @@
 
 <body>
     <%- include("./partials/header.ejs") %>
-
         <div class="cajon_formulario">
             <form action='/usuario/registro' method="POST">
                 <div>
                     <h1>Registrate</h1>
                 </div>
                 <div>
-                    <input type="text" name="first_name" placeholder="  Ingresa tu nombre">
+                    <input type="text" name="first_name"
+                        value="<%= locals.old && old.first_name ? old.first_name : "" %>"
+                        placeholder=" Ingresa tu nombre">
+                    <% if (locals.errors && locals.errors.first_name) { %>
+                        <p class="error">
+                            <%= errors.first_name.msg %>
+                        </p>
+                        <% } %>
                 </div>
                 <div>
-                    <input type="text" name="last_name" placeholder="  Ingresa tu apellido">
+                    <input type="text" name="last_name" value="<%= locals.old && old.last_name ? old.last_name : "" %>"
+                        placeholder="  Ingresa tu apellido">
+                    <% if (locals.errors && locals.errors.last_name) { %>
+                        <p class="error">
+                            <%= errors.last_name.msg %>
+                        </p>
+                        <% } %>
                 </div>
                 <div>
-                    <input type="text" name="alias" placeholder="  Ingresa tu nick">
+                    <input type="text" name="alias" value="<%= locals.old && old.alias ? old.alias : "" %>"
+                        placeholder="  Ingresa tu nick">
+                    <% if (locals.errors && locals.errors.alias) { %>
+                        <p class="error">
+                            <%= errors.alias.msg %>
+                        </p>
+                        <% } %>
                 </div>
                 <div>
-                    <input type="text" name="email" placeholder="  Ingresa tu email">
+                    <input type="text" name="email" value="<%= locals.old && old.email ? old.email : "" %>"
+                        placeholder="  Ingresa tu email">
+                    <% if (locals.errors && locals.errors.email) { %>
+                        <p class="error">
+                            <%= errors.email.msg %>
+                        </p>
+                        <% } %>
                 </div>
                 <div>
                     <input type="password" name="password" id="pass" placeholder="  Ingresa tu contraseña">
+                    <% if (locals.errors && locals.errors.password) { %>
+                        <p class="error">
+                            <%= errors.password.msg %>
+                        </p>
+                        <% } %>
                 </div>
                 <div>
                     <input type="checkbox" onclick="Show()" class="boton_mostrar">

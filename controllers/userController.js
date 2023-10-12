@@ -1,6 +1,8 @@
 const db = require('../database/models');
 const { Op } = require('sequelize');
-const { Users, Peliculas } = db;
+const { Users } = db;
+const bcrypt = require('bcryptjs');
+const { validationResult } = require('express-validator')
 
 
 const userController = {
@@ -37,16 +39,45 @@ const userController = {
     },
 
     create: (req, res) => {
-        Users.create({
-            first_name: req.body.first_name,
-            last_name: req.body.last_name,
-            alias: req.body.alias,
-            email: req.body.email,
-            password: req.body.password,
-            avatar_id: req.body.genero
-        }).then(() => {
-            res.redirect("/")
-        })
+        const errors = validationResult(req);
+        console.log(errors.mapped())
+        if (errors.isEmpty()) {
+            Users.create({
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                alias: req.body.alias,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10),
+                avatar_id: req.body.genero
+            }).then(() => {
+                res.redirect("/");
+            })
+        } else {
+            res.render('register', { errors: errors.mapped(), old: req.body })
+        }
+
+
+        /* let userFound = Users.findOne({ // buscar el email del usuario en la base de datos
+            where: {
+                email: req.body.email
+            }
+        });
+        if (!userFound) {
+            Users.create({
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                alias: req.body.alias,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10),
+                avatar_id: req.body.genero
+            }).then(() => {
+                res.redirect("/")
+            })
+        }
+        else {
+            res.send('ese email ya esta registado')
+        } */
     }
 }
+
 module.exports = userController;
