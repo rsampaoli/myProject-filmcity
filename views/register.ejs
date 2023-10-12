@@ -4,7 +4,7 @@
 <head>
     <link rel='stylesheet' href='/css/register.css' />
     <link rel='stylesheet' href='/css/header.css' />
-
+    <script src="https://kit.fontawesome.com/80b891709d.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
@@ -18,7 +18,7 @@
                 <div>
                     <h1>Registrate</h1>
                 </div>
-                <div>
+                <div class="input_box">
                     <input type="text" name="first_name"
                         value="<%= locals.old && old.first_name ? old.first_name : "" %>"
                         placeholder=" Ingresa tu nombre">
@@ -28,7 +28,7 @@
                         </p>
                         <% } %>
                 </div>
-                <div>
+                <div class="input_box">
                     <input type="text" name="last_name" value="<%= locals.old && old.last_name ? old.last_name : "" %>"
                         placeholder="  Ingresa tu apellido">
                     <% if (locals.errors && locals.errors.last_name) { %>
@@ -37,7 +37,7 @@
                         </p>
                         <% } %>
                 </div>
-                <div>
+                <div class="input_box">
                     <input type="text" name="alias" value="<%= locals.old && old.alias ? old.alias : "" %>"
                         placeholder="  Ingresa tu nick">
                     <% if (locals.errors && locals.errors.alias) { %>
@@ -46,7 +46,7 @@
                         </p>
                         <% } %>
                 </div>
-                <div>
+                <div class="input_box">
                     <input type="text" name="email" value="<%= locals.old && old.email ? old.email : "" %>"
                         placeholder="  Ingresa tu email">
                     <% if (locals.errors && locals.errors.email) { %>
@@ -55,7 +55,7 @@
                         </p>
                         <% } %>
                 </div>
-                <div>
+                <div class="input_box">
                     <input type="password" name="password" id="pass" placeholder="  Ingresa tu contraseña">
                     <% if (locals.errors && locals.errors.password) { %>
                         <p class="error">

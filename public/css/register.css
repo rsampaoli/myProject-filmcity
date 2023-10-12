@@ -8,8 +8,19 @@ html {
 }
 
 .error {
-    position: absolute;
+    font-size: 12px;
     color: red;
+    margin-top: -0.01em;
+    padding-top: 2px;
+    position: absolute;
+    /* padding-bottom: -1em;
+    padding: 2px;
+    margin-top: -0.1em;
+    margin-bottom: -1%; */
+}
+
+.input_box {
+    margin-bottom: 1.5em;
 }
 
 .boton_login {
@@ -56,6 +67,7 @@ h1 {
     margin-top: 10%;
     margin-bottom: 5%;
 }
+
 
 .mostrar_texto {
     color: white;

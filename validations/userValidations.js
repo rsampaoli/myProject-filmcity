@@ -7,31 +7,31 @@ module.exports = {
     registerValidation: [
         body('first_name')
             .notEmpty()
-            .withMessage('Este campo es obligatorio')
+            .withMessage('*Este campo es obligatorio')
             .bail()
             .isLength({ min: 3 })
-            .withMessage('El nombre debe poseer al menos 3 caracteres'),
+            .withMessage('*El nombre debe poseer al menos 3 caracteres'),
 
         body('last_name')
             .notEmpty()
-            .withMessage('Este campo es obligatorio')
+            .withMessage('*Este campo es obligatorio')
             .bail()
             .isLength({ min: 3 })
-            .withMessage('El apellido debe poseer al menos 3 caracteres'),
+            .withMessage('*El apellido debe poseer al menos 3 caracteres'),
 
         body('alias')
             .notEmpty()
-            .withMessage('Este campo es obligatorio')
+            .withMessage('*Este campo es obligatorio')
             .bail()
             .isLength({ min: 2 })
-            .withMessage('El alias es muy corto'),
+            .withMessage('*El alias es muy corto'),
 
         body('email')
             .notEmpty()
-            .withMessage('Este campo es obligatorio')
+            .withMessage('*Este campo es obligatorio')
             .bail()
             .isEmail()
-            .withMessage('Ingrese un mail válido')
+            .withMessage('*Ingrese un mail válido')
             .custom(async function (value, { req }) {
                 const usuario = await Users.findOne({
                     where: {
@@ -39,15 +39,15 @@ module.exports = {
                     }
                 });
                 if (usuario) {
-                    return Promise.reject(new Error('correo ya existe en la base de datos'));
+                    return Promise.reject(new Error('*Correo ya existe en la base de datos'));
                 }
-            }).withMessage('Email ya registrado'),
+            }).withMessage('*Email ya registrado'),
 
         body('password')
             .notEmpty()
-            .withMessage('Este campo es obligatorio')
+            .withMessage('*Este campo es obligatorio')
             .bail()
             .isLength({ min: 4 })
-            .withMessage('La contraseña debe tener minimo 4 caracteres')
+            .withMessage('*La contraseña debe tener minimo 4 caracteres')
     ]
 }
