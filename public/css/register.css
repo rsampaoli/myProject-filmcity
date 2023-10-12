@@ -19,6 +19,11 @@ html {
     margin-bottom: 1.5em;
 }
 
+.input_box_password {
+    display: none;
+    transition: display 1000ms;
+}
+
 .boton_login {
     display: none;
 }

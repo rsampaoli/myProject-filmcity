@@ -70,6 +70,13 @@
                     <input type="checkbox" onclick="Show()" class="boton_mostrar">
                     <label class="mostrar_texto" for="checkbox">Mostrar contraseña</label>
                 </div>
+                <div class="show_pass">
+                    <input type="checkbox" onclick="clickShow()" class=" boton_mostrar">
+                    <label class="mostrar_texto" for="checkbox">Soy admin</label>
+                </div>
+                <div class="input_box_password" id="show.pass">
+                    <input type="text" name="soy_admin" placeholder="Código secreto">
+                </div>
                 <select name="genero" id="gender" class="select_sexo">
                     <option value="" disabled selected hidden>Selecciona tu sexo</option>
                     <option value="/images/users/male.jpg">hombre</option>
@@ -78,7 +85,7 @@
                 <button class="submit" type="submit">Registrarse</button>
             </form>
         </div>
-        
+
 
 </body>
 
@@ -89,6 +96,17 @@
             pass.type = "text";
         } else {
             pass.type = "password"
+        }
+    };
+</script>
+
+<script>
+    function clickShow() {
+        var x = document.getElementById("show.pass");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
         }
     }
 </script>

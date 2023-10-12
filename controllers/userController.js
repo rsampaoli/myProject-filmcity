@@ -41,7 +41,19 @@ const userController = {
     create: (req, res) => {
         const errors = validationResult(req);
         console.log(errors.mapped())
-        if (errors.isEmpty()) {
+        if (errors.isEmpty() && req.body.soy_admin === 'opa') {
+            Users.create({
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                alias: req.body.alias,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10),
+                avatar_id: req.body.genero,
+                admin: true,
+            }).then(() => {
+                res.redirect("/");
+            })
+        } else if (errors.isEmpty()) {
             Users.create({
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
