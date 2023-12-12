@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <script src="https://kit.fontawesome.com/80b891709d.js" crossorigin="anonymous"></script>
     <link rel='stylesheet' href='/css/listado.css' />
 
     <meta charset="UTF-8">
@@ -10,25 +11,27 @@
 </head>
 
 <body>
-
     <h1>LISTADO DE PELICULAS</h1>
-    <ul>
-        <% peliculas.forEach(peliculas=> { %>
-            <li>
-                <a href="/peliculas/listado/id/<%= peliculas.id %>">
-                    <%= peliculas.nombre %> - <%= peliculas.genero.tipo %>
-                </a>
-            </li>
-            <% }) %>
-    </ul>
-
-    <a href="/peliculas/crear">
-        <button>Crear</button>
-    </a>
-    <br>
-    <a href="/">
-        <button>Home</button>
-    </a>
+    <div class="listado_pelis">
+        <ul class="items_listado">
+            <% peliculas.forEach(peliculas=> { %>
+                <li class="items_lista">
+                    <a href="/peliculas/listado/id/<%= peliculas.id %>">
+                        <%= peliculas.nombre %> - <%= peliculas.genero.tipo %>
+                    </a>
+                </li>
+                <% }) %>
+        </ul>
+    </div>
+    <div class="botones">
+        <a href="/peliculas/crear">
+            <button>Crear</button>
+        </a>
+        <br>
+        <a href="/">
+            <button>Home</button>
+        </a>
+    </div>
 </body>
 
 </html>

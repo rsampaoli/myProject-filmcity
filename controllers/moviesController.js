@@ -27,9 +27,6 @@ let moviesController = {
 
     add: function (req, res) {
         res.render('crearPelicula');
-        let url = ('https://www.youtube.com/watch?v=vCA0lZqw0Pg&ab_channel=WarnerBros.PicturesLatinoam%C3%A9rica')
-        let final = url.substring(32, 43)
-        console.log(final)
     },
 
     create: function (req, res) {
@@ -45,7 +42,6 @@ let moviesController = {
         }).then(() => {
             res.redirect("/peliculas/listado")
         }).catch(error => res.send(error))
-
     },
 
     edit: (req, res) => {
@@ -58,19 +54,37 @@ let moviesController = {
     },
 
     update: (req, res) => {
-        Peliculas.update({
-            nombre: req.body.nombre,
-            description: req.body.description,
-            rating: Number(req.body.rating),
-            genero_id: req.body.genero,
-            image: '/images/movies/' + req.file.filename,
-        }, {
-            where: {
-                id: req.params.id
-            }
-        });
-        res.redirect('/peliculas/listado/id/' + req.params.id)
-    },
+
+        if (req.file != undefined) {
+            Peliculas.update({
+                nombre: req.body.nombre,
+                description: req.body.description,
+                rating: Number(req.body.rating),
+                genero_id: req.body.genero,
+                image: '/images/movies/' + req.file.filename
+            }, {
+                where: {
+                    id: req.params.id
+                }
+            });
+            res.redirect('/peliculas/listado/id/' + req.params.id)
+        }
+        else {
+            Peliculas.update({
+                nombre: req.body.nombre,
+                description: req.body.description,
+                rating: Number(req.body.rating),
+                genero_id: req.body.genero,
+            }, {
+                where: {
+                    id: req.params.id
+                }
+            });
+            res.redirect('/peliculas/listado/id/' + req.params.id)
+        }
+    }
+
+    ,
 
     delete: (req, res) => {
         Peliculas.findByPk(req.params.id, {

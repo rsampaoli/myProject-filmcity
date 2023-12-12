@@ -1,0 +1,47 @@
+* {
+    font-family: "Roboto";
+}
+
+html {
+    background-image: url(../images/background\ index\ image.jpg);
+    max-width: 100%;
+}
+
+.listado_pelis {
+    margin-top: 5em;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.753);
+    border-radius: 8px;
+    max-width: 40%;
+    margin-left: 30%;
+}
+
+.items_listado {
+    list-style-type: none;
+}
+
+.items_lista a {
+    text-decoration: none;
+    color: white;
+    transition: all 800ms;
+}
+
+.items_lista:hover {
+    transform: scale(1.1);
+}
+
+.botones {
+    margin-top: 2em;
+    max-width: 30%;
+    margin-left: 35%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.botones button {
+    margin: 3px;
+    margin-left: 35%;
+}

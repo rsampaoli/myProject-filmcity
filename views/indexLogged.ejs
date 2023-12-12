@@ -23,10 +23,11 @@
                     <div class="pelicula">
                         <a href="/peliculas/listado/id/<%= peliculas.id %>">
                             <img class="imagen_pelicula" src="<%= peliculas.image %>" alt="">
+                            <p class="nombre_pelicula">
+                                <%= peliculas.nombre %>
+                            </p>
                         </a>
-                        <p class="nombre_pelicula">
-                            <%= peliculas.nombre %>
-                        </p>
+
                     </div>
                     <% }) %>
             </div>
