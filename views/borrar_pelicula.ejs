@@ -4,18 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='/css/borrar_pelicula.css' />
-
-    <title>Borrar</title>
+    <link rel="stylesheet" href="/css/borrar_pelicula.css">
+    <title>Borrar Película</title>
 </head>
 
 <body>
     <main>
-        <h1>Deseas borrar la pelicula?</h1>
-        <form action="/peliculas/borrar/id/<%=pelicula.id%>" method="POST">
-            <button type="SUBMIT">SI</button>
+        <h1>Deseas borrar la película?</h1>
+        <form action="/peliculas/borrar/id/<%= pelicula.id %>" method="POST">
+            <button type="submit">SI</button>
         </form>
-        <a href="/peliculas/listado/id/<%=pelicula.id%>"> 
+        <a href="/peliculas/listado/id/<%= pelicula.id %>">
             <button>NO</button>
         </a>
     </main>
