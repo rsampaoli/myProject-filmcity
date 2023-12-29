@@ -8,6 +8,12 @@ header {
     transform: scale(0.8);
 }
 
+.bienvenido_usuario {
+    position: absolute;
+    right: 8%;
+    margin-top: 25px;
+}
+
 .link_logo {
     z-index: 1;
 }

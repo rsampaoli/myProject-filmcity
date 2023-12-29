@@ -3,23 +3,33 @@ const { Op } = require('sequelize');
 const { Peliculas, Genero } = db;
 
 let moviesController = {
-    list: function (req, res) {
+    list: (req, res) => {
         db.Peliculas.findAll({
             include: [{ association: "genero" }]
         })
-            .then(function (peliculas) {
-                res.render("listado", { peliculas: peliculas })
+            .then((peliculas) => {
+                res.render("listado", { peliculas });
             })
+            .catch((error) => {
+                console.error('Error al obtener películas:', error);
+                res.status(500).send('Error al obtener películas');
+            });
     },
 
-    detail: function (req, res) {
-        if (req.session.userLogged) {
+    detail: (req, res) => {
+        const { userLogged } = req.session;
+
+        if (userLogged) {
             db.Peliculas.findByPk(req.params.id, {
                 include: [{ association: "genero" }]
             })
                 .then((pelicula) => {
-                    res.render("detalle_pelicula", { pelicula: pelicula, user: req.session.userLogged });
+                    res.render("detalle_pelicula", { pelicula, user: userLogged });
                 })
+                .catch((error) => {
+                    console.error('Error al obtener la película:', error);
+                    res.status(500).send('Error al obtener la película');
+                });
         } else {
             res.render('index');
         }
@@ -29,9 +39,14 @@ let moviesController = {
         res.render('crearPelicula');
     },
 
-    create: function (req, res) {
-        let url = (req.body.url_video);
-        let final_url = url.substring(32, 43)
+    create: (req, res) => {
+        if (!req.body.nombre || !req.body.description || !req.body.rating || !req.body.genero || !req.file || !req.body.url_video) {
+            return res.status(400).send('Todos los campos son requeridos');
+        }
+
+        let url = req.body.url_video;
+        let final_url = url.substring(32, 43);
+
         Peliculas.create({
             nombre: req.body.nombre,
             description: req.body.description,
@@ -39,70 +54,102 @@ let moviesController = {
             genero_id: req.body.genero,
             image: '/images/movies/' + req.file.filename,
             video_url: 'https://www.youtube.com/embed/' + final_url + '?autoplay=1'
-        }).then(() => {
-            res.redirect("/peliculas/listado")
-        }).catch(error => res.send(error))
+        })
+            .then(() => {
+                res.redirect("/peliculas/listado");
+            })
+            .catch(error => {
+                console.error('Error al crear la película:', error);
+                res.status(500).send('Error al crear la película, por favor intenta nuevamente');
+            });
     },
 
     edit: (req, res) => {
-        db.Peliculas.findByPk(req.params.id, {
+        const peliculaId = req.params.id;
+
+        db.Peliculas.findByPk(peliculaId, {
             include: [{ association: "genero" }]
         })
             .then((pelicula) => {
+                if (!pelicula) {
+                    // Si la película no se encuentra, renderiza una página de error o redirige a una vista predeterminada
+                    return res.status(404).send('La película no fue encontrada');
+                }
+
+                // Renderiza la vista de edición con los datos de la película
                 res.render("editar_pelicula", { pelicula: pelicula });
             })
+            .catch((error) => {
+                console.error('Error al obtener la película para editar:', error);
+                res.status(500).send('Error al obtener la película para editar');
+            });
     },
 
-    update: (req, res) => {
+    update: async (req, res) => {
+        try {
+            let updateData = {
+                nombre: req.body.nombre,
+                description: req.body.description,
+                rating: Number(req.body.rating),
+                genero_id: req.body.genero
+            };
 
-        if (req.file != undefined) {
-            Peliculas.update({
-                nombre: req.body.nombre,
-                description: req.body.description,
-                rating: Number(req.body.rating),
-                genero_id: req.body.genero,
-                image: '/images/movies/' + req.file.filename
-            }, {
+            if (req.file !== undefined) {
+                updateData.image = '/images/movies/' + req.file.filename;
+            }
+
+            await Peliculas.update(updateData, {
                 where: {
                     id: req.params.id
                 }
             });
-            res.redirect('/peliculas/listado/id/' + req.params.id)
+
+            res.redirect('/peliculas/listado/id/' + req.params.id);
+        } catch (error) {
+            console.error('Error al actualizar la película:', error);
+            res.status(500).send('Error al actualizar la película');
         }
-        else {
-            Peliculas.update({
-                nombre: req.body.nombre,
-                description: req.body.description,
-                rating: Number(req.body.rating),
-                genero_id: req.body.genero,
-            }, {
+    },
+
+    delete: async (req, res) => {
+        try {
+            const pelicula = await Peliculas.findByPk(req.params.id, {
+                include: [{ association: "genero" }]
+            });
+
+            if (!pelicula) {
+                return res.status(404).send('Pelicula no encontrada');
+            }
+
+            res.render("borrar_pelicula", { pelicula });
+        } catch (error) {
+            console.error('Error al buscar la película:', error);
+            res.status(500).send('Error al buscar la película');
+        }
+    },
+
+    destroy: async (req, res) => {
+        try {
+            const deletedRowCount = await Peliculas.destroy({
                 where: {
                     id: req.params.id
                 }
             });
-            res.redirect('/peliculas/listado/id/' + req.params.id)
+
+            /*Se verifica el número de filas eliminadas (deletedRowCount). 
+            Si es mayor que cero, se redirige a la página de listado de películas.
+            Si es cero, significa que no se encontró una película con el ID proporcionado.*/
+
+            if (deletedRowCount > 0) {
+                res.redirect('/peliculas/listado');
+            } else {
+                res.status(404).send('Pelicula no encontrada');
+            }
+        } catch (error) {
+            console.error('Error al eliminar la película:', error);
+            res.status(500).send('Error al eliminar la película');
         }
     }
-
-    ,
-
-    delete: (req, res) => {
-        Peliculas.findByPk(req.params.id, {
-            include: [{ association: "genero" }]
-        })
-            .then((pelicula) => {
-                res.render("borrar_pelicula", { pelicula: pelicula });
-            })
-    },
-
-    destroy: (req, res) => {
-        Peliculas.destroy({
-            where: {
-                id: req.params.id
-            }
-        })
-        res.redirect('/peliculas/listado');
-    },
 }
 
 module.exports = moviesController;  

@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html, body {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../images/background\ index\ image.jpg);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semitransparente oscuro */
+    padding: 20px;
+    border-radius: 8px;
+    color: #fff; /* Color de texto blanco */
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+button {
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+}
+
+button[type="submit"] {
+    background-color: #af6142; /* Color para el botón 'SI' */
+    color: #fff;
+}
+
+button[type="submit"]:hover {
+    background-color: #964c32; /* Color al pasar el ratón sobre el botón 'SI' */
+}
+
+button:not([type="submit"]) {
+    background-color: #4b99b3; /* Color para el botón 'NO' */
+    color: #fff;
+}
+
+button:not([type="submit"]):hover {
+    background-color: #3c7a8d; /* Color al pasar el ratón sobre el botón 'NO' */
+}
+
+a {
+    text-decoration: none;
+}
