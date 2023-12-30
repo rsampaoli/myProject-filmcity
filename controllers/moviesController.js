@@ -36,7 +36,12 @@ let moviesController = {
     },
 
     add: function (req, res) {
-        res.render('crearPelicula');
+        let user = req.session.userLogged;
+        if (user.admin == true) {
+            res.render('crearPelicula');
+        } else {
+            res.send('no eres admin para acceder en este sitio')
+        }
     },
 
     create: (req, res) => {
@@ -65,24 +70,28 @@ let moviesController = {
     },
 
     edit: (req, res) => {
-        const peliculaId = req.params.id;
-
-        db.Peliculas.findByPk(peliculaId, {
-            include: [{ association: "genero" }]
-        })
-            .then((pelicula) => {
-                if (!pelicula) {
-                    // Si la película no se encuentra, renderiza una página de error o redirige a una vista predeterminada
-                    return res.status(404).send('La película no fue encontrada');
-                }
-
-                // Renderiza la vista de edición con los datos de la película
-                res.render("editar_pelicula", { pelicula: pelicula });
+        let user = req.session.userLogged; // se carga el usuario logueado en la variablo
+        if (user.admin == true) {           // pregunta de seguridad si es admin
+            const peliculaId = req.params.id;
+            db.Peliculas.findByPk(peliculaId, {
+                include: [{ association: "genero" }]
             })
-            .catch((error) => {
-                console.error('Error al obtener la película para editar:', error);
-                res.status(500).send('Error al obtener la película para editar');
-            });
+                .then((pelicula) => {
+                    if (!pelicula) {
+                        // Si la película no se encuentra, renderiza una página de error o redirige a una vista predeterminada
+                        return res.status(404).send('La película no fue encontrada');
+                    }
+
+                    // Renderiza la vista de edición con los datos de la película
+                    res.render("editar_pelicula", { pelicula: pelicula });
+                })
+                .catch((error) => {
+                    console.error('Error al obtener la película para editar:', error);
+                    res.status(500).send('Error al obtener la película para editar');
+                });
+        } else {
+            res.send('no eres admin para acceder en este sitio')
+        }
     },
 
     update: async (req, res) => {
@@ -112,19 +121,24 @@ let moviesController = {
     },
 
     delete: async (req, res) => {
-        try {
-            const pelicula = await Peliculas.findByPk(req.params.id, {
-                include: [{ association: "genero" }]
-            });
+        let user = req.session.userLogged; // se carga el usuario logueado en la variablo
+        if (user.admin == true) {           // pregunta de seguridad si es admin
+            try {
+                const pelicula = await Peliculas.findByPk(req.params.id, {
+                    include: [{ association: "genero" }]
+                });
 
-            if (!pelicula) {
-                return res.status(404).send('Pelicula no encontrada');
+                if (!pelicula) {
+                    return res.status(404).send('Pelicula no encontrada');
+                }
+
+                res.render("borrar_pelicula", { pelicula });
+            } catch (error) {
+                console.error('Error al buscar la película:', error);
+                res.status(500).send('Error al buscar la película');
             }
-
-            res.render("borrar_pelicula", { pelicula });
-        } catch (error) {
-            console.error('Error al buscar la película:', error);
-            res.status(500).send('Error al buscar la película');
+        } else {
+            res.send('no eres admin para acceder en este sitio')
         }
     },
 

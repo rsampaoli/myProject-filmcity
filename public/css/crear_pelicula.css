@@ -1,6 +1,6 @@
 body {
     font-family: "Roboto";
-    color: #333;
+    color: white;
     margin: 0;
     padding: 0;
 }
@@ -19,9 +19,8 @@ form {
     max-width: 500px;
     width: 100%;
     margin: 50px auto;
-    /* Margen superior e inferior */
     padding: 20px;
-    background-color: #fff;
+    background-color: rgba(0, 0, 0, 0.8);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -44,10 +43,10 @@ input[type="file"],
 button[type="submit"],
 button {
     width: calc(100% - 18px);
-    /* 18px compensa el borde */
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    background-color: #333;
     box-sizing: border-box;
 }
 
@@ -57,16 +56,21 @@ input[type="file"] {
 
 button[type="submit"],
 button {
+    justify-content: center;
+    align-items: center;
+    max-width: 40%;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     text-decoration: none;
     color: #fff;
+    background-color: #af6142;
+
 }
 
-button.submit {
-    background-color: #333;
+button.back {
+    background-color: #4b99b3;
 }
 
 button.submit:hover,
@@ -77,4 +81,17 @@ button:hover {
 a {
     text-decoration: none;
     color: #333;
+}
+
+button[type="submit"],
+button {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+
+button.back {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
 }

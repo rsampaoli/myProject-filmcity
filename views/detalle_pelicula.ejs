@@ -32,10 +32,13 @@
                     </p>
                     <p class="descripcion">
                         <%= pelicula.description %>
-                            <div class="buttons">
-                                <button> <a href="/peliculas/editar/id/<%=pelicula.id%>">EDITAR</a></button>
-                                <button> <a href="/peliculas/borrar/id/<%=pelicula.id%>">BORRAR</a></button>
-                            </div>
+                            <% if (user.admin==true) { %>
+                                <div class="buttons">
+                                    <button> <a href="/peliculas/editar/id/<%=pelicula.id%>">EDITAR</a></button>
+                                    <button> <a href="/peliculas/borrar/id/<%=pelicula.id%>">BORRAR</a></button>
+                                </div>
+                                <% } %>
+
                     </p>
                 </div>
             </div>
