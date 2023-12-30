@@ -20,53 +20,63 @@ const userController = {
     },
 
     loginProcess: async (req, res) => {
-        let userFound = await Users.findOne({ // buscar el email del usuario en la base de datos
-            where: {
-                email: req.body.email
+        try {
+            let userFound = await Users.findOne({
+                where: {
+                    email: req.body.email
+                }
+            });
+    
+            if (!userFound) {
+                return res.send('Usuario no encontrado');
             }
-        });
-        if (!userFound) { // validar si el usuario no existe en la base de datos
-            return res.send('no se encuentra el usuario');
-        } else {
-            if (userFound.password === req.body.pass) {  //pregunto si la pass coincide, la que pone en la pag, con la BD
-                delete userFound.password;               //en caso de positivo, borro la pass para no enviarla con el req
-                req.session.userLogged = userFound;      //asigno a req.session el usuario encontrado   
-                res.redirect('/')
+    
+            const sonPassIguales = bcrypt.compare(req.body.pass, userFound.password);
+    
+            if (sonPassIguales) {
+                delete userFound.password;
+                req.session.userLogged = userFound;
+                res.redirect('/');
             } else {
-                res.send('esa no es la pass')
+                res.send('Contraseña incorrecta');
             }
-        };
+        } catch (error) {
+            // Manejo de errores
+            console.error(error);
+            res.send('Error en el proceso de inicio de sesión');
+        }
     },
 
     create: (req, res) => {
         const errors = validationResult(req);
-        console.log(errors.mapped())
-        if (errors.isEmpty() && req.body.soy_admin === 'opa') {
-            Users.create({
-                first_name: req.body.first_name,
-                last_name: req.body.last_name,
-                alias: req.body.alias,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
-                avatar_id: req.body.genero,
-                admin: true,
-            }).then(() => {
-                res.redirect("/");
-            })
-        } else if (errors.isEmpty()) {
-            Users.create({
-                first_name: req.body.first_name,
-                last_name: req.body.last_name,
-                alias: req.body.alias,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
-                avatar_id: req.body.genero,
-                admin: false,
-            }).then(() => {
-                res.redirect("/");
-            })
+        const randomNumber = Math.floor(Math.random() * 3);
+        let imagenPerfil = '';
+
+        if (req.body.genero === 'mujer') {
+            imagenPerfil = `/images/users/women${randomNumber}.jpg`;
         } else {
-            res.render('register', { errors: errors.mapped(), old: req.body })
+            imagenPerfil = `/images/users/man${randomNumber}.jpg`;
+        }
+
+        if (errors.isEmpty()) {
+            const isAdmin = req.body.soy_admin === 'opa';
+            Users.create({
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                alias: req.body.alias,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10),
+                avatar_id: isAdmin ? '/images/users/admin.jpg' : imagenPerfil,
+                admin: isAdmin,
+            })
+                .then(() => {
+                    res.redirect('/');
+                })
+                .catch((error) => {
+                    res.render('register', { errors: error, old: req.body });
+                });
+        } else {
+            res.render('register', { errors: errors.mapped(), old: req.body });
         }
     }
 }
