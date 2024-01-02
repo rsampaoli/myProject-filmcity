@@ -74,3 +74,25 @@ h1 {
 .botones button:hover {
     background-color: #505050;
 }
+
+.filtro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 5%;
+}
+
+select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    background-color: #333;
+    color: #fff;
+}
+
+select option {
+    background-color: #333;
+    color: #fff;
+}

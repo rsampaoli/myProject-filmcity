@@ -12,6 +12,14 @@
 
 <body>
     <h1>LISTADO DE PELICULAS</h1>
+    <div class="filtro">
+        <select id="selectGenero" onchange="filtrarPorGenero()">
+            <option value="">Selecciona un género</option>
+            <option value="1">Terror</option>
+            <option value="2">Acción</option>
+            <option value="3">Fantasía</option>
+        </select>
+    </div>
     <div class="listado_pelis">
         <ul class="items_listado">
             <% peliculas.forEach(peliculas=> { %>
@@ -32,5 +40,17 @@
         </a>
     </div>
 </body>
+
+<script>
+    function filtrarPorGenero() {
+        const selectElement = document.getElementById('selectGenero');
+        const generoSeleccionado = selectElement.value;
+
+        // Redirecciona al usuario al listado con el género seleccionado
+        if (generoSeleccionado) {
+            window.location.href = `/peliculas/listado/genero/${generoSeleccionado}`;
+        }
+    }
+</script>
 
 </html>

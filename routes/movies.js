@@ -7,9 +7,10 @@ const upload = require('../utils/multer');
 
 router.get('/listado', moviesController.list);
 router.get('/listado/id/:id', moviesController.detail);
+router.get('/listado/genero/:id', moviesController.filterByGenre)
 router.get('/crear', moviesController.add);
 router.get('/editar/id/:id', moviesController.edit);
-router.get('/borrar/id/:id', moviesController.delete)
+router.get('/borrar/id/:id', moviesController.delete);
 
 
 router.post('/crear', upload.single('image'), moviesController.create);

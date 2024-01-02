@@ -16,6 +16,23 @@ let moviesController = {
             });
     },
 
+    filterByGenre: (req, res) => {
+
+        const genreId = req.params.id;
+
+        db.Peliculas.findAll({
+            include: [{ association: "genero" }],
+            where: { genero_id: genreId }
+        })
+            .then((peliculas) => {
+                res.render('listado', { peliculas });
+            })
+            .catch((error) => {
+                console.error('Error al obtener películas por género:', error);
+                res.status(500).send('Error al obtener películas por género');
+            });
+    },
+
     detail: (req, res) => {
         const { userLogged } = req.session;
 
