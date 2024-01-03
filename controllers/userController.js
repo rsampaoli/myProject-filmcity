@@ -16,6 +16,7 @@ const userController = {
     },
 
     profile: function (req, res) {
+        //console.log(req.session.userLogged.id)
         res.render('profile', { user: req.session.userLogged });
     },
 
@@ -26,13 +27,13 @@ const userController = {
                     email: req.body.email
                 }
             });
-    
+
             if (!userFound) {
                 return res.send('Usuario no encontrado');
             }
-    
+
             const sonPassIguales = bcrypt.compare(req.body.pass, userFound.password);
-    
+
             if (sonPassIguales) {
                 delete userFound.password;
                 req.session.userLogged = userFound;
@@ -77,6 +78,65 @@ const userController = {
                 });
         } else {
             res.render('register', { errors: errors.mapped(), old: req.body });
+        }
+    },
+
+    edit: async (req, res) => {
+        try {
+            const userId = req.params.id;
+            const user = await Users.findByPk(userId);
+
+            if (!user) {
+                return res.send('Usuario no encontrado');
+            }
+            res.render('editProfile', { user });
+        } catch (error) {
+            console.error('Error al obtener los datos del usuario:', error);
+            res.send('Error al obtener los datos del usuario');
+        }
+    },
+
+    update: async (req, res) => {
+        try {
+            let userFound = await Users.findOne({
+                where: {
+                    id: req.params.id
+                }
+            });
+
+            if (!userFound) {
+                return res.status(404).send('Usuario no encontrado');
+            }
+
+            const updateData = {
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                email: req.body.email,
+                alias: req.body.alias,
+            };
+
+            if (req.body.password) {
+                const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+                updateData.password = hashedPassword;
+            }
+
+            await Users.update(updateData, {
+                where: {
+                    id: req.params.id
+                }
+            });
+
+            let updatedUser = await Users.findOne({
+                where: {
+                    id: req.params.id
+                }
+            });
+
+            req.session.userLogged = updatedUser;
+            res.redirect('/usuario/profile');
+        } catch (error) {
+            console.error('Error al actualizar usuario:', error);
+            res.status(500).send('Error al actualizar usuario');
         }
     }
 }

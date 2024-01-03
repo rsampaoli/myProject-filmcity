@@ -1,1 +1,1 @@
-Se ingresó en la página /peliculas/listado/genero/3
+Se ingresó en la página /public/images/logo.ico

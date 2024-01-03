@@ -7,13 +7,13 @@ const router = express.Router();
 router.get('/registro', userController.register);
 router.post('/registro', registerValidation, userController.create);
 
-
 //login
 router.get('/login', userController.login);
 router.post('/login', userController.loginProcess);
 
 //profile
 router.get('/profile', userController.profile);
-
+router.get('/edit/:id', userController.edit);
+router.post('/edit/:id', userController.update);
 
 module.exports = router;

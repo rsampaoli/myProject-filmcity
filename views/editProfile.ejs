@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://kit.fontawesome.com/80b891709d.js" crossorigin="anonymous"></script>
+    <link rel='stylesheet' href='/css/partials/navbar.css' />
+    <link rel='stylesheet' href='/css/editProfile.css' />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+</head>
+
+<body>
+    <h1>Editar Usuario</h1>
+    <form action="/usuario/edit/<%= user.id %>" enctype="application/x-www-form-urlencoded" method="POST">
+        <label for="first_name">Nombre</label>
+        <input type="text" name="first_name" value="<%= user.first_name %>">
+        <label for="last_name">Apellido</label>
+        <input type="text" name="last_name" value="<%= user.last_name %>">
+        <label for="alias">Alias</label>
+        <input type="text" name="alias" value="<%= user.alias %>">
+        <label for="email">Email</label>
+        <input type="text" name="email" value="<%= user.email %>">
+        <label for="password">Nueva Contraseña</label>
+        <input type="checkbox" onclick="Show()" class=" boton_mostrar">
+        <input type="password" id="password" name="password" value="<% user.password %>">
+        <button class="submit" type="submit">EDITAR</button>
+    </form>
+</body>
+
+<script>
+    function Show() {
+        let pass = document.getElementById("password");
+        if (pass.type === "password") {
+            pass.type = "text";
+        } else {
+            pass.type = "password"
+        }
+    };
+</script>
+
+</html>
