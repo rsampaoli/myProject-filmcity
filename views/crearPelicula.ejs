@@ -10,40 +10,41 @@
 
 <body>
     <h1>CREAR PELICULA</h1>
-    <form action='/peliculas/crear' enctype="multipart/form-data" method="POST">
-        <div>
-            <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" placeholder="nombre">
-        </div>
-        <label for="descripcion">Descripcion</label>
-        <div>
-            <textarea name="description" id="description" cols="30" rows="10"></textarea>
-        </div>
+    <div class="main_box">
+        <form action='/peliculas/crear' enctype="multipart/form-data" method="POST">
+            <div>
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" placeholder="nombre">
+            </div>
+            <label for="descripcion">Descripcion</label>
+            <div>
+                <textarea name="description" id="description" cols="30" rows="10"></textarea>
+            </div>
 
-        <div>
-            <label for="url_video">Inserte URL del trailer</label>
-            <input type="text" name="url_video" placeholder="URL">
-        </div>
-        <div>
-            <label for="rating">Rating</label>
-            <input type="number" name="rating" placeholder="rating">
-        </div>
-        <div>
-            <label for="image">Ingrese una portada para su pelicula</label>
-            <input type="file" name="image">
-        </div>
-        Genero
-        <select name="genero" id="">
-            <option value="1">terror</option>
-            <option value="2">accion</option>
-            <option value="3">fantasia</option>
-        </select>
-        <br>
-        <br>
-        <button class="submit" type="submit">Crear</button>
-        <br>
-        <button class="back"> <a href="/peliculas/listado">VOLVER</a></button>
-    </form>
+            <div>
+                <label for="url_video">Inserte URL del trailer</label>
+                <input type="text" name="url_video" placeholder="URL">
+            </div>
+            <div>
+                <label for="rating">Rating</label>
+                <input type="number" name="rating" placeholder="rating">
+            </div>
+            <div>
+                <label for="image">Ingrese una portada para su pelicula</label>
+                <input type="file" name="image">
+            </div>
+            Genero
+            <select name="genero" id="">
+                <option value="1">terror</option>
+                <option value="2">accion</option>
+                <option value="3">fantasia</option>
+            </select>
+            <br>
+            <br>
+            <button class="submit" type="submit">Crear</button>
+        </form>
+        <a href="/peliculas/listado"><button class="back">VOLVER</button></a>
+    </div>
 </body>
 
 </html>
