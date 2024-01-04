@@ -13,7 +13,7 @@ const userController = {
 
     login: function (req, res) {
         res.render('login')
-    },
+    },   
 
     profile: function (req, res) {
         //console.log(req.session.userLogged.id)

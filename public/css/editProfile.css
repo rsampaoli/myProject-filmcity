@@ -43,6 +43,7 @@ input[type="password"] {
 }
 
 button.submit {
+    width: 50%;
     margin-top: 15px;
     padding: 10px 20px;
     border: none;
@@ -57,3 +58,36 @@ button.submit {
 button.submit:hover {
     background-color: #873e2d;
 }
+
+button.goback {
+    width: 50%;
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #af6142;
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button.goback a {
+    text-decoration: none;
+    color: white;
+}
+
+button.goback:hover {
+    background-color: #873e2d;
+}
+
+.password-input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .password-input input {
+    margin-left: 5px;
+  }
+  

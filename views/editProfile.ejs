@@ -22,9 +22,14 @@
         <label for="email">Email</label>
         <input type="text" name="email" value="<%= user.email %>">
         <label for="password">Nueva Contraseña</label>
-        <input type="checkbox" onclick="Show()" class=" boton_mostrar">
-        <input type="password" id="password" name="password" value="<% user.password %>">
+        <div class="password-input">
+            <input type="checkbox" onclick="Show()" class="boton_mostrar">
+            <input type="password" id="password" name="password">
+        </div>
+
         <button class="submit" type="submit">EDITAR</button>
+        <button class="goback"><a href="/usuario/profile">VOLVER</button></a>
+
     </form>
 </body>
 
