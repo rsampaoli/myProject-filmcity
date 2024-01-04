@@ -1,1 +1,1 @@
-Se ingresó en la página /peliculas/crear
+Se ingresó en la página /usuario/login

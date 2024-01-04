@@ -13,7 +13,7 @@ const userController = {
 
     login: function (req, res) {
         res.render('login')
-    },   
+    },
 
     profile: function (req, res) {
         //console.log(req.session.userLogged.id)
@@ -22,29 +22,28 @@ const userController = {
 
     loginProcess: async (req, res) => {
         try {
-            let userFound = await Users.findOne({
-                where: {
-                    email: req.body.email
-                }
-            });
-
-            if (!userFound) {
-                return res.send('Usuario no encontrado');
+            const { email, pass } = req.body;
+            if (!email || !pass) {
+                return res.status(400).send('Por favor, ingrese email y contraseña');
             }
-
-            const sonPassIguales = bcrypt.compare(req.body.pass, userFound.password);
-
-            if (sonPassIguales) {
+            const userFound = await Users.findOne({
+                where: { email }
+            });
+            if (!userFound) {
+                return res.status(404).send('Usuario no encontrado');
+            }
+            const userPassword = userFound.password
+            const passwordMatches = bcrypt.compareSync(pass, userPassword);
+            if (passwordMatches) {
                 delete userFound.password;
                 req.session.userLogged = userFound;
                 res.redirect('/');
             } else {
-                res.send('Contraseña incorrecta');
+                res.status(401).send('Contraseña incorrecta');
             }
         } catch (error) {
-            // Manejo de errores
-            console.error(error);
-            res.send('Error en el proceso de inicio de sesión');
+            console.error('Error en el inicio de sesión:', error);
+            res.status(500).send('Error en el proceso de inicio de sesión');
         }
     },
 
@@ -55,8 +54,10 @@ const userController = {
 
         if (req.body.genero === 'mujer') {
             imagenPerfil = `/images/users/women${randomNumber}.jpg`;
-        } else {
+        } else if (req.body.genero === 'hombre') {
             imagenPerfil = `/images/users/man${randomNumber}.jpg`;
+        } else {
+            imagenPerfil = `/images/users/cat${randomNumber}.jpg`;
         }
 
         if (errors.isEmpty()) {
