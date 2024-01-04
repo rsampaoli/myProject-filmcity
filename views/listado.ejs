@@ -15,6 +15,7 @@
     <div class="filtro">
         <select id="selectGenero" onchange="filtrarPorGenero()">
             <option value="">Selecciona un género</option>
+            <option value="0">Todos los generos</option>
             <option value="1">Terror</option>
             <option value="2">Acción</option>
             <option value="3">Fantasía</option>
@@ -45,10 +46,10 @@
     function filtrarPorGenero() {
         const selectElement = document.getElementById('selectGenero');
         const generoSeleccionado = selectElement.value;
-
-        // Redirecciona al usuario al listado con el género seleccionado
-        if (generoSeleccionado) {
+        if (generoSeleccionado !== '0') {
             window.location.href = `/peliculas/listado/genero/${generoSeleccionado}`;
+        } else {
+            window.location.href = '/peliculas/listado';
         }
     }
 </script>
