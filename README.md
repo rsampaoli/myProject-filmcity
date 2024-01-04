@@ -26,7 +26,6 @@ Este proyecto proporciona una interfaz intuitiva para que los usuarios puedan ac
 2. Descarga la base de datos: `https://drive.google.com/drive/folders/1xsfqxWfw4zBEH_YWEVR_V40QOUxvHcj_?usp=drive_link`
 3. Inicia la base de datos, yo utilizo XAMPP.
 4. Instala las dependencias: `npm install`
-5. Ejecuta el servidor: `npm start`
 
 ## Uso
 
