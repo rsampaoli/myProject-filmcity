@@ -4,20 +4,24 @@ const { Peliculas, Genero } = db;
 
 let moviesController = {
     list: (req, res) => {
-        db.Peliculas.findAll({
-            include: [{ association: "genero" }]
-        })
-            .then((peliculas) => {
-                res.render("listado", { peliculas });
+        const { userLogged } = req.session;
+
+        if (userLogged) {
+            db.Peliculas.findAll({
+                include: [{ association: "genero" }]
             })
-            .catch((error) => {
-                console.error('Error al obtener películas:', error);
-                res.status(500).send('Error al obtener películas');
-            });
+                .then((peliculas) => {
+                    res.render("listado", { peliculas, user: userLogged });
+                })
+                .catch((error) => {
+                    console.error('Error al obtener películas:', error);
+                    res.status(500).send('Error al obtener películas');
+                });
+        }
     },
 
     filterByGenre: (req, res) => {
-
+        const { userLogged } = req.session;
         const genreId = req.params.id;
 
         db.Peliculas.findAll({
@@ -25,7 +29,7 @@ let moviesController = {
             where: { genero_id: genreId }
         })
             .then((peliculas) => {
-                res.render('listado', { peliculas });
+                res.render('listado', { peliculas , user:userLogged});
             })
             .catch((error) => {
                 console.error('Error al obtener películas por género:', error);

@@ -33,12 +33,14 @@
         </ul>
     </div>
     <div class="botones">
-        <a href="/peliculas/crear">
-            <button>Crear</button>
-        </a>
-        <a href="/">
-            <button>Home</button>
-        </a>
+        <% if (user.admin) { %>
+            <a href="/peliculas/crear">
+                <button>Crear</button>
+            </a>
+            <% } %>
+                <a href="/">
+                    <button>Home</button>
+                </a>
     </div>
 </body>
 

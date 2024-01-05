@@ -3,15 +3,18 @@
         <li><a href="/">
                 <img src="/images/logo.png" class="logo_marca">
             </a></li>
-        <% if (user.admin == true) { %>
+        <% if (user.admin==true) { %>
             <li><a href="/peliculas/listado">PELICULAS <i id="arrow_down" class="fa-solid fa-arrow-down"></a></i>
             </li>
-            <% } %>
-                <% if (user) { %>
-                    <p class="bienvenido_usuario">Bienvenido <%= user.alias %> !!
-                    </p>
-                    <% } %>
-                        <li> <a href="/usuario/profile"><img class="imagen_usuario" src="<%= user.avatar_id %>"
-                                    alt=""></a></li>
+            <% } else { %>
+                <li><a href="/peliculas/listado">LISTADO <i id="arrow_down" class="fa-solid fa-arrow-down"></a></i>
+                </li>
+                <% } %>
+                    <% if (user) { %>
+                        <p class="bienvenido_usuario">Bienvenido <%= user.alias %> !!
+                        </p>
+                        <% } %>
+                            <li> <a href="/usuario/profile"><img class="imagen_usuario" src="<%= user.avatar_id %>"
+                                        alt=""></a></li>
     </ul>
 </nav>

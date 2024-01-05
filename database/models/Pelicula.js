@@ -29,7 +29,11 @@ module.exports = (sequelize, dataTypes) => {
         video_url: {
             type: dataTypes.STRING,
             allowNull: false
-        }
+        },
+        clics: {
+            type: dataTypes.INTEGER,
+            allowNull: false,
+        },
     };
     const config = {
         tableName: "pelicula", //nombre real de la tabla en la BD
