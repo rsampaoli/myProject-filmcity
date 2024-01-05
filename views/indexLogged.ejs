@@ -57,6 +57,7 @@
                 </div>
                 <div class="cajon_topRated">
                     <% peliculas
+                    
                         .sort((a, b) => b.clics - a.clics) // Ordenar de mayor a menor
                         .slice(0, 5) // Obtener las primeras 5 películas
                         .forEach(pelicula => { %>

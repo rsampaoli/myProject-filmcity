@@ -46,13 +46,12 @@ let moviesController = {
                 {
                     where: { id: req.params.id }
                 }
-            )
-                .then(() => {
-                    return db.Peliculas.findByPk(req.params.id, {
-                        include:
-                            [{ association: "genero" }]
-                    });
-                })
+            ).then(() => {
+                return db.Peliculas.findByPk(req.params.id, {
+                    include:
+                        [{ association: "genero" }]
+                });
+            })
                 .then((pelicula) => {
                     res.render("detalle_pelicula", { pelicula, user: userLogged });
                 }).catch((error) => {
@@ -69,7 +68,7 @@ let moviesController = {
         if (user.admin == true) {
             res.render('crearPelicula');
         } else {
-            res.send('no eres admin para acceder en este sitio')
+            res.render('no eres admin para acceder en este sitio')
         }
     },
 
@@ -87,7 +86,8 @@ let moviesController = {
             rating: Number(req.body.rating),
             genero_id: req.body.genero,
             image: '/images/movies/' + req.file.filename,
-            video_url: 'https://www.youtube.com/embed/' + final_url + '?autoplay=1'
+            video_url: 'https://www.youtube.com/embed/' + final_url + '?autoplay=1',
+            clics: 0
         })
             .then(() => {
                 res.redirect("/peliculas/listado");
