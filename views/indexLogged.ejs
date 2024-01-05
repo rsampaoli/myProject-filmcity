@@ -32,12 +32,32 @@
             </div>
             <div class="topRated">
                 <div>
-                    <h2 class="titulo_topRated">TOP 5</h2>
+                    <h2 class="titulo_topRated">TOP RATED</h2>
                 </div>
                 <div class="cajon_topRated">
                     <% peliculas
                         .filter(pelicula => pelicula.rating >= 8) // Filtrar películas con rating mayor o igual a 8
                         .sort((a, b) => b.rating - a.rating) // Ordenar de mayor a menor rating
+                        .slice(0, 5) // Obtener las primeras 5 películas
+                        .forEach(pelicula => { %>
+                            <div class="pelicula">
+                                <a href="/peliculas/listado/id/<%= pelicula.id %>">
+                                    <img class="imagen_pelicula" src="<%= pelicula.image %>" alt="">
+                                    <p class="nombre_pelicula">
+                                        <%= pelicula.nombre %>
+                                    </p>
+                                </a>
+                            </div>
+                        <% }) %>
+                </div>
+            </div>
+            <div class="topRated">
+                <div>
+                    <h2 class="titulo_topRated">TOP VISITADAS</h2>
+                </div>
+                <div class="cajon_topRated">
+                    <% peliculas
+                        .sort((a, b) => b.clics - a.clics) // Ordenar de mayor a menor
                         .slice(0, 5) // Obtener las primeras 5 películas
                         .forEach(pelicula => { %>
                             <div class="pelicula">

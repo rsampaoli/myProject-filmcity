@@ -29,7 +29,7 @@ let moviesController = {
             where: { genero_id: genreId }
         })
             .then((peliculas) => {
-                res.render('listado', { peliculas , user:userLogged});
+                res.render('listado', { peliculas, user: userLogged });
             })
             .catch((error) => {
                 console.error('Error al obtener películas por género:', error);
@@ -41,13 +41,21 @@ let moviesController = {
         const { userLogged } = req.session;
 
         if (userLogged) {
-            db.Peliculas.findByPk(req.params.id, {
-                include: [{ association: "genero" }]
-            })
+            db.Peliculas.update(
+                { clics: db.Sequelize.literal('clics + 1') },
+                {
+                    where: { id: req.params.id }
+                }
+            )
+                .then(() => {
+                    return db.Peliculas.findByPk(req.params.id, {
+                        include:
+                            [{ association: "genero" }]
+                    });
+                })
                 .then((pelicula) => {
                     res.render("detalle_pelicula", { pelicula, user: userLogged });
-                })
-                .catch((error) => {
+                }).catch((error) => {
                     console.error('Error al obtener la película:', error);
                     res.status(500).send('Error al obtener la película');
                 });
