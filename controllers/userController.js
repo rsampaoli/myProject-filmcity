@@ -4,7 +4,28 @@ const { Users } = db;
 const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator')
 
-const transporter = require('../config/mailer')
+const transporter = require('../config/mailer');
+const session = require('express-session');
+
+function generarStringAleatorio() {
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let stringAleatorio = '';
+    for (let i = 0; i < 10; i++) {
+        const indiceAleatorio = Math.floor(Math.random() * caracteres.length);
+        stringAleatorio += caracteres.charAt(indiceAleatorio);
+    }
+    return stringAleatorio;
+};
+
+function obtenerRutaImagenPerfil(genero, randomNumber) {
+    if (genero === 'mujer') {
+        return `/images/users/women${randomNumber}.jpg`;
+    } else if (genero === 'hombre') {
+        return `/images/users/man${randomNumber}.jpg`;
+    } else {
+        return `/images/users/cat${randomNumber}.jpg`;
+    }
+}
 
 const userController = {
 
@@ -62,21 +83,23 @@ const userController = {
         try {
             const errors = validationResult(req);
             const randomNumber = Math.floor(Math.random() * 3);
-            let imagenPerfil = '';
-
-            if (req.body.genero === 'mujer') {
-                imagenPerfil = `/images/users/women${randomNumber}.jpg`;
-            } else if (req.body.genero === 'hombre') {
-                imagenPerfil = `/images/users/man${randomNumber}.jpg`;
-            } else {
-                imagenPerfil = `/images/users/cat${randomNumber}.jpg`;
-            }
+            const imagenPerfil = obtenerRutaImagenPerfil(req.body.genero, randomNumber)
 
             if (errors.isEmpty()) {
                 const isAdmin = req.body.soy_admin === 'opa';
                 const userMail = req.body.email;
                 const userAlias = req.body.alias;
                 const hashedPassword = await bcrypt.hash(req.body.password, 10);
+                const stringAleatorio = generarStringAleatorio();
+                let sessData = req.session;
+                sessData.token = stringAleatorio;
+
+                await transporter.sendMail({
+                    from: " 👻👻👻👻👻👻👻👻 ",
+                    to: userMail,
+                    subject: "Bienvenido " + userAlias,
+                    html: `<b>Tu clave es ${stringAleatorio}</b>`,
+                });
 
                 await Users.create({
                     first_name: req.body.first_name,
@@ -89,14 +112,7 @@ const userController = {
                     validated: false,
                 });
 
-                const info = await transporter.sendMail({
-                    from: " 👻👻👻👻👻👻👻👻 ",
-                    to: userMail,
-                    subject: "Bienvenido " + userAlias,
-                    html: "<b>QUE ONDAAAAAAAAAAA</b>",
-                });
-                console.log("Mail enviado exitosamente", info.messageId);
-                res.send(`<script>alert("Usuario Creado Exitosamente");</script><script>window.location.href = "/";</script>`);
+                res.send(`<script>alert("Usuario Creado Exitosamente");</script><script>window.location.href = "/usuario/login";</script>`);
             } else {
                 res.render('register', { errors: errors.array(), old: req.body });
             }
@@ -113,35 +129,50 @@ const userController = {
 
             if (!user) {
                 return res.send('Usuario no encontrado');
-            } else if (user.validated == true) {
-                res.write('<script>alert("Tu email ya esta validado");</script>');
-                res.end(`<script>window.location.href ="/";</script>`);
+            }
+            if (user.validated) {
+                res.write('<script>alert("Tu email ya se encuentra validado");</script>');
+                res.end('<script>window.location.href = "/usuario/login";</script>');
             }
             res.render('user_validation', { user });
         } catch (error) {
             console.error('Error al obtener los datos del usuario:', error);
-            res.send('Error al obtener los datos del usuario');
+            req.send('Error al obtener los datos del usuario');
         }
     },
 
-    validate: (req, res) => {
-        if (req.body.token == '12345') {
-            const updateData = {
-                validated: true,
-            }
-            Users.update(updateData, {
-                where: {
-                    id: req.params.id
-                }
-            });
-        } let updatedUser = Users.findOne({
-            where: {
-                id: req.params.id
-            }
-        });
+    validate: async (req, res) => {
+        try {
+            if (req.body.token == req.session.token) {
+                const updateData = {
+                    validated: true,
+                };
 
-        req.session.userLogged = updatedUser;
-        res.redirect('/usuario/profile');
+                await Users.update(updateData, {
+                    where: {
+                        id: req.params.id
+                    }
+                });
+
+                const updatedUser = await Users.findOne({
+                    where: {
+                        id: req.params.id
+                    }
+                });
+
+                delete req.session.token;
+                req.session.userLogged = updatedUser;
+
+                res.write('<script>alert("Mail validado correctamente");</script>');
+                res.end('<script>window.location.href = "/usuario/login";</script>');
+            } else {
+                res.write('<script>alert("Token de validación incorrecto")</script>');
+                res.end(`<script>window.location.href = "/usuario/login";</script>`);
+            }
+        } catch (error) {
+            console.error('Error al validar el usuario:', error);
+            res.write('<script>alert("Error al validar el usuario")</script>');
+        }
     },
 
     edit: async (req, res) => {
