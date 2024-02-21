@@ -18,7 +18,12 @@ const userController = {
 
     profile: function (req, res) {
         //console.log(req.session.userLogged.id)
-        res.render('profile', { user: req.session.userLogged });
+        let user = req.session.userLogged
+        if (user && user.validated) {
+            res.render('profile', { user: user });
+        } else {
+            res.render('index');
+        }
     },
 
     loginProcess: async (req, res) => {
@@ -38,9 +43,12 @@ const userController = {
             if (passwordMatches) {
                 delete userFound.password;
                 req.session.userLogged = userFound;
+                if (userFound.validated == false) {
+                    res.write('<script>alert("Tu email no esta validado");</script>');
+                    res.end(`<script>window.location.href ="/usuario/validate/${userFound.id}";</script>`);
+                }
                 res.write('<script>alert("Usuario Logueado Exitosamente");</script>');
                 res.end('<script>window.location.href = "/";</script>');
-
             } else {
                 res.status(401).send('Contraseña incorrecta');
             }
@@ -78,6 +86,7 @@ const userController = {
                     password: hashedPassword,
                     avatar_id: isAdmin ? '/images/users/admin.jpg' : imagenPerfil,
                     admin: isAdmin,
+                    validated: false,
                 });
 
                 const info = await transporter.sendMail({
@@ -95,6 +104,44 @@ const userController = {
             console.error('Error en la creación de usuario:', error);
             res.render('register', { errors: [{ msg: 'Error en el proceso de registro' }], old: req.body });
         }
+    },
+
+    validation: async (req, res) => {
+        try {
+            const userId = req.params.id;
+            const user = await Users.findByPk(userId);
+
+            if (!user) {
+                return res.send('Usuario no encontrado');
+            } else if (user.validated == true) {
+                res.write('<script>alert("Tu email ya esta validado");</script>');
+                res.end(`<script>window.location.href ="/";</script>`);
+            }
+            res.render('user_validation', { user });
+        } catch (error) {
+            console.error('Error al obtener los datos del usuario:', error);
+            res.send('Error al obtener los datos del usuario');
+        }
+    },
+
+    validate: (req, res) => {
+        if (req.body.token == '12345') {
+            const updateData = {
+                validated: true,
+            }
+            Users.update(updateData, {
+                where: {
+                    id: req.params.id
+                }
+            });
+        } let updatedUser = Users.findOne({
+            where: {
+                id: req.params.id
+            }
+        });
+
+        req.session.userLogged = updatedUser;
+        res.redirect('/usuario/profile');
     },
 
     edit: async (req, res) => {

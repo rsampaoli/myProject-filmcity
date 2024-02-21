@@ -33,6 +33,10 @@ module.exports = (sequelize, dataTypes) => {
         admin: {
             type: dataTypes.BOOLEAN,
             allowNull: false
+        },
+        validated: {
+            type: dataTypes.BOOLEAN,
+            allowNull: false
         }
     };
     const config = {

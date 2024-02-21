@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>A continuación vamos a valida tu email, por favor ingresa el token</p>
+    <p>que te llegó al email</p>
+    <form action="/usuario/validate/<%= user.id %>" enctype="application/x-www-form-urlencoded" method="POST">
+        <label for="token">INGRESE EL TOKEN</label>
+        <input type="text" name="token">
+        <button class="submit" type="submit">VALIDAR</button>
+    </form>
+</body>
+
+</html>

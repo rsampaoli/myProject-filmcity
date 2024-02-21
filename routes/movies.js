@@ -4,7 +4,6 @@ const router = express.Router();
 const upload = require('../utils/multer');
 
 
-
 router.get('/listado', moviesController.list);
 router.get('/listado/id/:id', moviesController.detail);
 router.get('/listado/genero/:id', moviesController.filterByGenre)

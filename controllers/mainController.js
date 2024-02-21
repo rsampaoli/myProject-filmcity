@@ -5,11 +5,12 @@ const { Users, Peliculas } = db;
 const mainController = {
 
     logged: function (req, res) {
-        if (req.session.userLogged) {
+        let user = req.session.userLogged
+        if (user && user.validated) {
             Peliculas.findAll({
                 include: [{ association: "genero" }]
             }).then(function (peliculas) {
-                res.render('indexLogged', { peliculas: peliculas, user: req.session.userLogged })
+                res.render('indexLogged', { peliculas: peliculas, user: user })
             })
         } else {
             res.render('index');

@@ -4,14 +4,14 @@ const { Peliculas, Genero } = db;
 
 let moviesController = {
     list: (req, res) => {
-        const { userLogged } = req.session;
+        let user = req.session.userLogged;
 
-        if (userLogged) {
+        if (user && user.validated) {
             db.Peliculas.findAll({
                 include: [{ association: "genero" }]
             })
                 .then((peliculas) => {
-                    res.render("listado", { peliculas, user: userLogged });
+                    res.render("listado", { peliculas, user: user });
                 })
                 .catch((error) => {
                     console.error('Error al obtener películas:', error);
@@ -38,9 +38,9 @@ let moviesController = {
     },
 
     detail: (req, res) => {
-        const { userLogged } = req.session;
+        let user = req.session.userLogged;
 
-        if (userLogged) {
+        if (user && user.validated) {
             db.Peliculas.update(
                 { clics: db.Sequelize.literal('clics + 1') },
                 {
@@ -53,7 +53,7 @@ let moviesController = {
                 });
             })
                 .then((pelicula) => {
-                    res.render("detalle_pelicula", { pelicula, user: userLogged });
+                    res.render("detalle_pelicula", { pelicula, user: user });
                 }).catch((error) => {
                     console.error('Error al obtener la película:', error);
                     res.status(500).send('Error al obtener la película');
