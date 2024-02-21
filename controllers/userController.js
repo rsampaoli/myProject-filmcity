@@ -4,6 +4,7 @@ const { Users } = db;
 const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator')
 
+const transporter = require('../config/mailer')
 
 const userController = {
 
@@ -37,7 +38,9 @@ const userController = {
             if (passwordMatches) {
                 delete userFound.password;
                 req.session.userLogged = userFound;
-                res.redirect('/');
+                res.write('<script>alert("Usuario Logueado Exitosamente");</script>');
+                res.end('<script>window.location.href = "/";</script>');
+
             } else {
                 res.status(401).send('Contraseña incorrecta');
             }
@@ -47,38 +50,50 @@ const userController = {
         }
     },
 
-    create: (req, res) => {
-        const errors = validationResult(req);
-        const randomNumber = Math.floor(Math.random() * 3);
-        let imagenPerfil = '';
+    create: async (req, res) => {
+        try {
+            const errors = validationResult(req);
+            const randomNumber = Math.floor(Math.random() * 3);
+            let imagenPerfil = '';
 
-        if (req.body.genero === 'mujer') {
-            imagenPerfil = `/images/users/women${randomNumber}.jpg`;
-        } else if (req.body.genero === 'hombre') {
-            imagenPerfil = `/images/users/man${randomNumber}.jpg`;
-        } else {
-            imagenPerfil = `/images/users/cat${randomNumber}.jpg`;
-        }
+            if (req.body.genero === 'mujer') {
+                imagenPerfil = `/images/users/women${randomNumber}.jpg`;
+            } else if (req.body.genero === 'hombre') {
+                imagenPerfil = `/images/users/man${randomNumber}.jpg`;
+            } else {
+                imagenPerfil = `/images/users/cat${randomNumber}.jpg`;
+            }
 
-        if (errors.isEmpty()) {
-            const isAdmin = req.body.soy_admin === 'opa';
-            Users.create({
-                first_name: req.body.first_name,
-                last_name: req.body.last_name,
-                alias: req.body.alias,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
-                avatar_id: isAdmin ? '/images/users/admin.jpg' : imagenPerfil,
-                admin: isAdmin,
-            })
-                .then(() => {
-                    res.redirect('/');
-                })
-                .catch((error) => {
-                    res.render('register', { errors: error, old: req.body });
+            if (errors.isEmpty()) {
+                const isAdmin = req.body.soy_admin === 'opa';
+                const userMail = req.body.email;
+                const userAlias = req.body.alias;
+                const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+                await Users.create({
+                    first_name: req.body.first_name,
+                    last_name: req.body.last_name,
+                    alias: userAlias,
+                    email: userMail,
+                    password: hashedPassword,
+                    avatar_id: isAdmin ? '/images/users/admin.jpg' : imagenPerfil,
+                    admin: isAdmin,
                 });
-        } else {
-            res.render('register', { errors: errors.mapped(), old: req.body });
+
+                const info = await transporter.sendMail({
+                    from: " 👻👻👻👻👻👻👻👻 ",
+                    to: userMail,
+                    subject: "Bienvenido " + userAlias,
+                    html: "<b>QUE ONDAAAAAAAAAAA</b>",
+                });
+                console.log("Mail enviado exitosamente", info.messageId);
+                res.send(`<script>alert("Usuario Creado Exitosamente");</script><script>window.location.href = "/";</script>`);
+            } else {
+                res.render('register', { errors: errors.array(), old: req.body });
+            }
+        } catch (error) {
+            console.error('Error en la creación de usuario:', error);
+            res.render('register', { errors: [{ msg: 'Error en el proceso de registro' }], old: req.body });
         }
     },
 
