@@ -7,7 +7,6 @@ FilmCity es una plataforma para ver información detallada sobre películas, inc
 Este proyecto proporciona una interfaz intuitiva para que los usuarios puedan acceder y descubrir información relevante sobre diferentes películas. Con esta aplicación, los usuarios pueden explorar una variedad de películas y obtener sus detalles.
 
 ## Características
-
 - **Exploración de Películas:** Descubre una amplia variedad de titulos.
 - **Detalles de Películas:** Mira información detallada sobre cada película, incluyendo su rating, trailer, título y sinopsis.
 - **Facilidad de Navegación:** Interfaz fácil de usar para una experiencia fluida de navegación.
@@ -19,6 +18,7 @@ Este proyecto proporciona una interfaz intuitiva para que los usuarios puedan ac
 - **HTML/CSS/JavaScript:** Frontend basado en tecnologías web estándar.
 - **Base de Datos:** Almacenamiento de datos de películas, usuarios y detalles relacionados.
 - **Autenticación y Sesiones:** Manejo de usuarios y sesiones para funcionalidades de registro y login.
+- **NodeMailer** Validacion de primer logueo y verificacion por token de seguridad.
 
 ## Instalación
 
